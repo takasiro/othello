@@ -20,6 +20,8 @@ int blackCnt;
 int player;
 //パスフラグ
 int passFlg;
+//八方向見る順番
+const int drctArray[8] = { 0,1,2,3,4,5,6,7 };
 
 //シーン管理
 typedef enum  Judge {
