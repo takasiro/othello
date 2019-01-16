@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include"Global.h"
-int PieceReverse(int player) {
+int PlayerReverse(int player) {
 	if (player == BLACK) {
 		player = WHITE;
 	}

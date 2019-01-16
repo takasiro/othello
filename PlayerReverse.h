@@ -11,6 +11,6 @@
 備　　考 :#define　REVERSE　-1を使用
 　　　　　playerにREVERSEをかけてターンを変更
 *************************************************/
-int PieceReverse(int);
+int PlayerReverse(int);
 
 #endif _PLAYER_REVERSE_

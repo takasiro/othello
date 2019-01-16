@@ -16,12 +16,29 @@ POINT bt; //キーボード座標
 int whiteCnt;
 //黒の駒の総数
 int blackCnt;
+//現在のプレイヤーカラー
+int player;
+//パスフラグ
+int passFlg;
 
+//シーン管理
 typedef enum  Judge {
 	eAllJudge,
 	eClickJudge,
 	eReverseJudge
 };
-int i, j;
-#endif // _GLOBAL_INCLUDE_
+
+//方角
+typedef enum Direction {
+	eN,
+	eNE,
+	eE,
+	eSE,
+	eS,
+	eSW,
+	eW,
+	eNW,
+};
+
+#endif _GLOBAL_INCLUDE_
 
