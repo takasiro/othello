@@ -1,5 +1,5 @@
 #include <windows.h>
-#include <stdio.h>
+
 
 #ifndef  _GLOBAL_INCLUDE_
 #define _GLOBAL_INCLUDE_
@@ -9,20 +9,22 @@
 #define  EMPTY       0
 #define  WHITE       1
 
-static POINT pt; //マウス座標
-static POINT bt; //キーボード座標
+POINT pt; //マウス座標
+POINT bt; //キーボード座標
 
 //白い駒の総数
-static int whiteCnt;
+int whiteCnt;
 //黒の駒の総数
-static int blackCnt;
+int blackCnt;
 //現在のプレイヤーカラー
-static int player;
+int player;
 //パスフラグ
-static int passFlg;
+int passFlg;
+//八方向見る順番
+const int drctArray[8] = { 0,1,2,3,4,5,6,7 };
 
 //シーン管理
- typedef enum  Judge {
+typedef enum  Judge {
 	eAllJudge,
 	eClickJudge,
 	eReverseJudge
@@ -40,7 +42,7 @@ typedef enum Direction {
 	eNW,
 };
 
-static BYTE masu[10][10] = {
+BYTE masu[10][10] = {
 	{ 0,0,0,0,0,0,0,0,0,0 },
 	{ 0,0,0,0,0,0,0,0,0,0 },
 	{ 0,0,0,0,0,0,0,0,0,0 },
@@ -62,14 +64,14 @@ static POINT dot[4] = {
 };
 
 /************************************************
-関 数 名 :7()
+関 数 名 :GetMasu()
 処理内容 :masuの先頭アドレスを受け取る
 引    数 :無し
 返 却 値 :BYTE*
 備　　考 :戻り値がBYTE*なことに注意
 *************************************************/
-static BYTE* GetMasu() {
-	return &masu;
+BYTE* GetMasu() {
+	return masu;
 }
 
 /************************************************
@@ -82,7 +84,7 @@ static BYTE* GetMasu() {
 返 却 値 :無し
 備　　考 :マウスがあるマスに
 *************************************************/
-static void SetMasu(int i ,int j,int color) {
+void SetMasu(int i ,int j,int color) {
 	masu[i][j] = color;
 }
 
