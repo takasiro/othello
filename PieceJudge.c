@@ -20,6 +20,7 @@ int PieceJudge() {
 	mousex = pt.x / 50 % 8 + 1;
 	mousey = pt.y / 50 % 8 + 1;
 
+	//マウス座標の保存
 	tmpx = mousex;
 	tmpy = mousey;
 
@@ -32,31 +33,38 @@ int PieceJudge() {
 	//マスが0なら置けるかどうか調べる
 	else
 	{
+		//無限ループ
 		while (1)
 		{
-
+			//見たい方向が定まっていないなら
 			if (isDrctFlg == FALSE) {
 				Drct = drctArray[i];
 				i++;
 			}
 
+			//方向の先のマスを見る
 			switch (Drct)
 			{
 			case eN:
+				//プレイヤーと同色なら
 				if (masu[mousex][mousey - 1] == player * REVERSE)
 				{
 					Drct = eN;
 					isDrctFlg = TRUE;
 					mousex = mousex;
 					mousey = mousey - 1;
+					//その次もプレイヤーと同色なら
 					if (masu[mousex][mousey - 1] == player) {
 						return TRUE;
 					}
+					//プレイヤーと異なる色なら
 					else if (masu[mousex][mousey - 1] == player * REVERSE) {
 						mousex = mousex;
 						mousey = mousey - 1;
 					}
-					else {
+					//初期化
+					else {  
+						isDrctFlg = FALSE;
 						mousex = tmpx;
 						mousey = tmpy;
 						break;
@@ -122,6 +130,10 @@ int PieceJudge() {
 			default:
 				break;
 			}  //switch文終了
+
+			if (i == 8) {
+				return FALSE;
+			}
 		}  //while文終了
 	}  //else終了
 
