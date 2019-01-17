@@ -17,7 +17,7 @@ void Draw() {
 				SelectObject(hdc, hBrush[2]);  //çï
 				Ellipse(hdc, pt.x, pt.y, pt.x + 50, pt.y + 50);
 			}
-
+		}
 	EndPaint(hWnd, &ps);
 	return 0;
 }
