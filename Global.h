@@ -75,12 +75,15 @@ BYTE* GetMasu() {
 /************************************************
 関 数 名 :SetMasu(int i,int j,int num)
 処理内容 :挟んだ駒をひっくり返す
-引    数 :　第一引数　int  入れたい色
+引    数 :　
+第一引数　int  入れたい色
+第二引数　int  入れたい色
+第三引数　int  入れたい色
 返 却 値 :無し
-備　　考 :なし
+備　　考 :マウスがあるマスに
 *************************************************/
-void SetMasu(int num) {
-	masu[pt.x / 50 % 8 + 1][pt.y / 50 % 8 + 1] = num;
+void SetMasu(int i ,int j,int color) {
+	masu[i][j] = color;
 }
 
 #endif _GLOBAL_INCLUDE_

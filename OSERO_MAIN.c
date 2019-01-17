@@ -26,7 +26,7 @@ LRESULT CALLBACK WindowProc(
 	HDC hdc;
 	PAINTSTRUCT ps;
 	static HBRUSH hBrush[4];
-	int i.j;
+	int i,j;
 
 
 	switch (uMsg) {
