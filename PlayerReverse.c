@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include"Global.h"
+#include "Global.h"
 int PlayerReverse(int player) {
 	if (player == BLACK) {
 		player = WHITE;

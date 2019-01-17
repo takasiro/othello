@@ -1,6 +1,5 @@
 #pragma once
 #include <stdio.h>
-#include "Global.h"
 #ifndef _PLAYER_REVERSE_
 #define _PLAYER_REVERSE_
 /************************************************
