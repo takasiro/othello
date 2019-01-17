@@ -13,15 +13,15 @@ POINT pt; //マウス座標
 POINT bt; //キーボード座標
 
 //白い駒の総数
-int whiteCnt;
+static int whiteCnt;
 //黒の駒の総数
-int blackCnt;
+static int blackCnt;
 //現在のプレイヤーカラー
-int player;
+static int player;
 //パスフラグ
-int passFlg;
+static int passFlg;
 //八方向見る順番
-const int drctArray[8] = { 0,1,2,3,4,5,6,7 };
+static const int drctArray[8] = { 0,1,2,3,4,5,6,7 };
 
 //シーン管理
 typedef enum  Judge {
@@ -42,7 +42,7 @@ typedef enum Direction {
 	eNW,
 };
 
-BYTE masu[10][10] = {
+static BYTE masu[10][10] = {
 	{ 0,0,0,0,0,0,0,0,0,0 },
 	{ 0,0,0,0,0,0,0,0,0,0 },
 	{ 0,0,0,0,0,0,0,0,0,0 },
@@ -70,7 +70,7 @@ static POINT dot[4] = {
 返 却 値 :BYTE*
 備　　考 :戻り値がBYTE*なことに注意
 *************************************************/
-BYTE* GetMasu() {
+static BYTE* GetMasu() {
 	return masu;
 }
 
@@ -84,7 +84,7 @@ BYTE* GetMasu() {
 返 却 値 :無し
 備　　考 :マウスがあるマスに
 *************************************************/
-void SetMasu(int i ,int j,int color) {
+static void SetMasu(int i ,int j,int color) {
 	masu[i][j] = color;
 }
 
