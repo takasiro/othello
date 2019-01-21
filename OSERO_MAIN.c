@@ -1,6 +1,6 @@
 #include <windows.h>
 #include"Global.h"
-
+#include "PieceJudge.h"
 
 //#define APP_NAME TEXT("OSERO");
 
@@ -62,18 +62,7 @@ LRESULT CALLBACK WindowProc(
 		pt.y = (pt.y / 50) * 50;    //　・・
 
 		
-		for (i = 1; i < 9; i++) {
-			for (j = 1; j < 9; j++) {
-				if (masu[i][j] == BLACK) { //２次元配列を黒に
-					SelectObject(hdc, hBrush[1]);  //白
-					Ellipse(hdc, pt.x, pt.y, pt.x + 50, pt.y + 50);
-				}
-				else {
-					SelectObject(hdc, hBrush[2]);  //黒
-					Ellipse(hdc, pt.x, pt.y, pt.x + 50, pt.y + 50);
-				}
-			}
-		}
+		
 			/*
 			 *
 			 */
@@ -98,6 +87,20 @@ LRESULT CALLBACK WindowProc(
 		}
 
 
+		for (i = 1; i < 9; i++) {
+			for (j = 1; j < 9; j++) {
+				if (masu[i][j] == WHITE) { //２次元配列を黒に
+					SelectObject(hdc, hBrush[1]);  //白
+					Ellipse(hdc, (j-1)*50, (i-1)*50, j* 50,i * 50);
+				}
+				else if (masu[i][j] == BLACK) {
+					SelectObject(hdc, hBrush[2]);  //黒
+					Ellipse(hdc, (j - 1) * 50, (i - 1) * 50, j * 50, i * 50);
+				}
+				//Ellipse(hdc, (i - 1) * 50, (j - 1) * 50, i * 50, j * 50);
+			}
+		}
+
 		EndPaint(hWnd, &ps);
 
 
@@ -106,6 +109,12 @@ LRESULT CALLBACK WindowProc(
 
 		//マウスの処理
 	case WM_LBUTTONDOWN:
+		pt.x = LOWORD(lParam); //座標
+		pt.y = HIWORD(lParam); //座標
+		pt.x = (pt.x / 50) * 50;//座標を枠内に入れる
+		pt.y = (pt.y / 50) * 50;
+
+		PieceJudge();
 
 		return 0;
 

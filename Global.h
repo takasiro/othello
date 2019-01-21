@@ -4,7 +4,7 @@
 #ifndef  _GLOBAL_INCLUDE_
 #define _GLOBAL_INCLUDE_
 
-#define  REVERSE  -1
+#define  REVERSE    -
 #define  BLACK      -1
 #define  EMPTY       0
 #define  WHITE       1
@@ -42,13 +42,13 @@ typedef enum Direction {
 	eNW,
 };
 
-static BYTE masu[10][10] = {
+static int masu[10][10] = {
 	{ 0,0,0,0,0,0,0,0,0,0 },
 	{ 0,0,0,0,0,0,0,0,0,0 },
 	{ 0,0,0,0,0,0,0,0,0,0 },
 	{ 0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,1,2,0,0,0,0 },
-	{ 0,0,0,0,2,1,0,0,0,0 },
+	{ 0,0,0,0,1,-1,0,0,0,0 },
+	{ 0,0,0,0,-1,1,0,0,0,0 },
 	{ 0,0,0,0,0,0,0,0,0,0 },
 	{ 0,0,0,0,0,0,0,0,0,0 },
 	{ 0,0,0,0,0,0,0,0,0,0 },
@@ -84,7 +84,7 @@ static BYTE* GetMasu() {
 返 却 値 :無し
 備　　考 :マウスがあるマスに
 *************************************************/
-static void SetMasu(int i ,int j,int color) {
+static void SetMasu(int i, int j, int color) {
 	masu[i][j] = color;
 }
 
