@@ -10,6 +10,6 @@
 備　　考 :#define　REVERSE　-1を使用
 　　　　　playerにREVERSEをかけてターンを変更
 *************************************************/
-int PlayerReverse(int);
+extern void PlayerReverse();
 
 #endif _PLAYER_REVERSE_
