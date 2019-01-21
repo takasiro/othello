@@ -54,6 +54,30 @@ LRESULT CALLBACK WindowProc(
 		// ペイント開始
 		hdc = BeginPaint(hWnd, &ps);
 
+		/*
+		 *
+		 */
+
+		pt.x = (pt.x / 50) * 50;    //座標を枠内に入れる
+		pt.y = (pt.y / 50) * 50;    //　・・
+
+		
+		for (i = 1; i < 9; i++) {
+			for (j = 1; j < 9; j++) {
+				if (masu[i][j] == BLACK) { //２次元配列を黒に
+					SelectObject(hdc, hBrush[1]);  //白
+					Ellipse(hdc, pt.x, pt.y, pt.x + 50, pt.y + 50);
+				}
+				else {
+					SelectObject(hdc, hBrush[2]);  //黒
+					Ellipse(hdc, pt.x, pt.y, pt.x + 50, pt.y + 50);
+				}
+			}
+		}
+			/*
+			 *
+			 */
+
 		// オセロ盤の描画
 
 		SelectObject(hdc, hBrush[0]);
@@ -105,8 +129,8 @@ LRESULT CALLBACK WindowProc(
 
 int WINAPI WinMain(
 	HINSTANCE hInstance, HINSTANCE hPrevInstance,
-	PSTR lpCmdLine, int nCmdShow
-) {
+	PSTR lpCmdLine, int nCmdShow) 
+{
 	WNDCLASS wc;
 	MSG msg;
 
