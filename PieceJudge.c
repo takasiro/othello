@@ -15,11 +15,11 @@
 *************************************************/
 int PieceJudge() {
 
-	int mousex;			// マウスのx座標から計算したマス目
-	int mousey;			// マウスのy座標から計算したマス目
-	int Drct;			// 方向(Direction)を保存する
-	int mouceStarageX;	// マウスのx座標を保存する
-	int mouceStarageY;	// マウスのy座標を保存する
+	int mousex = 0;			// マウスのx座標から計算したマス目
+	int mousey = 0;			// マウスのy座標から計算したマス目
+	int Drct = 0;			// 方向(Direction)を保存する
+	int mouceStarageX = 0;	// マウスのx座標を保存する
+	int mouceStarageY = 0;	// マウスのy座標を保存する
 	static int isDrctFlg = FALSE;	// 方向が定まっているか >> TRUE:定まっている FALSE:定まっていない
 	int i = 0;
 
@@ -59,7 +59,8 @@ int PieceJudge() {
 			switch (Drct)
 			{
 
-			case eN:
+			// 上
+			case eN: 
 				if (masu[mousex][mousey - 1] == player * REVERSE)
 				{
 					Drct = eN;
@@ -86,73 +87,189 @@ int PieceJudge() {
 				}
 				break;
 
-
+			// 右上
 			case eNE:
 				if (masu[mousex + 1][mousey - 1] == player * REVERSE)
 				{
 					Drct = eNE;
 					mousex = mousex + 1;
 					mousey = mousey - 1;
+					if (masu[mousex + 1][mousey - 1] == player)
+					{
+						return TRUE;
+					}
+					else if (masu[mousex + 1][mousey - 1] == player * REVERSE)
+					{
+						mousex = mousex;
+						mousey = mousey - 1;
+					}
+					else
+					{
+						isDrctFlg = FALSE;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
+						break;
+					}
 				}
 				break;
 
-
+			// 右
 			case eE:
 				if (masu[mousex + 1][mousey] == player * REVERSE)
 				{
 					Drct = eE;
 					mousex = mousex + 1;
 					mousey = mousey;
+					if (masu[mousex + 1][mousey] == player)
+					{
+						return TRUE;
+					}
+					else if (masu[mousex + 1][mousey] == player * REVERSE)
+					{
+						mousex = mousex;
+						mousey = mousey - 1;
+					}
+					else
+					{
+						isDrctFlg = FALSE;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
+						break;
+					}
 				}
 				break;
 
-
+			// 右下
 			case eSE:
 				if (masu[mousex + 1][mousey + 1] == player * REVERSE)
 				{
 					Drct = eSE;
 					mousex = mousex + 1;
 					mousey = mousey + 1;
+					if (masu[mousex + 1][mousey + 1] == player)
+					{
+						return TRUE;
+					}
+					else if (masu[mousex + 1][mousey + 1] == player * REVERSE)
+					{
+						mousex = mousex;
+						mousey = mousey - 1;
+					}
+					else
+					{
+						isDrctFlg = FALSE;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
+						break;
+					}
 				}
 				break;
 
-
+			// 下
 			case eS:
 				if (masu[mousex][mousey + 1] == player * REVERSE)
 				{
 					Drct = eS;
 					mousex = mousex;
 					mousey = mousey + 1;
+
+					if (masu[mousex][mousey + 1] == player)
+					{
+						return TRUE;
+					}
+					else if (masu[mousex][mousey + 1] == player * REVERSE)
+					{
+						mousex = mousex;
+						mousey = mousey - 1;
+					}
+					else
+					{
+						isDrctFlg = FALSE;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
+						break;
+					}
 				}
 				break;
 
-
+			// 左下
 			case eSW:
 				if (masu[mousex - 1][mousey + 1] == player * REVERSE)
 				{
 					Drct = eSW;
 					mousex = mousex - 1;
 					mousey = mousey + 1;
+
+					if (masu[mousex - 1][mousey + 1] == player)
+					{
+						return TRUE;
+					}
+					else if (masu[mousex - 1][mousey + 1] == player * REVERSE)
+					{
+						mousex = mousex;
+						mousey = mousey - 1;
+					}
+					else
+					{
+						isDrctFlg = FALSE;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
+						break;
+					}
 				}
 				break;
 
-
+			// 左
 			case eW:
 				if (masu[mousex - 1][mousey] == player * REVERSE)
 				{
 					Drct = eW;
 					mousex = mousex - 1;
 					mousey = mousey;
+
+					if (masu[mousex - 1][mousey] == player)
+					{
+						return TRUE;
+					}
+					else if (masu[mousex - 1][mousey] == player * REVERSE)
+					{
+						mousex = mousex;
+						mousey = mousey - 1;
+					}
+					else
+					{
+						isDrctFlg = FALSE;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
+						break;
+					}
 				}
 				break;
 
-
+			// 左上
 			case eNW:
 				if (masu[mousex - 1][mousey - 1] == player * REVERSE)
 				{
 					Drct = eNW;
 					mousex = mousex - 1;
 					mousey = mousey - 1;
+
+					if (masu[mousex - 1][mousey - 1] == player)
+					{
+						return TRUE;
+					}
+					else if (masu[mousex - 1][mousey - 1] == player * REVERSE)
+					{
+						mousex = mousex;
+						mousey = mousey - 1;
+					}
+					else
+					{
+						isDrctFlg = FALSE;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
+						break;
+					}
 				}
 				break;
 

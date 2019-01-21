@@ -11,6 +11,6 @@
 返 却 値 :無し
 備　　考 :
 *************************************************/
-int PieceJudge();
+extern int PieceJudge();
 
 #endif _PIECE_JUDGE_
