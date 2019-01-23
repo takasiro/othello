@@ -115,8 +115,6 @@ LRESULT CALLBACK WindowProc(
 	case WM_LBUTTONDOWN:
 		pt.x = LOWORD(lParam); //ç¿ïW
 		pt.y = HIWORD(lParam); //ç¿ïW
-		pt.x = (pt.x / 50) * 50;//ç¿ïWÇògì‡Ç…ì¸ÇÍÇÈ
-		pt.y = (pt.y / 50) * 50;
 
 		if (PieceJudge() == TRUE) {
 			PieceReverse();

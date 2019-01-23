@@ -2,7 +2,7 @@
 #include "Global.h"
 #include "PieceReverse.h"
 
-void PieceReverse(int i, int j) {
+void PieceReverse() {
 	/*
 	*/
 

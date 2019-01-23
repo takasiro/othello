@@ -8,7 +8,7 @@
 返 却 値 :無し
 備　　考 :なし
 *************************************************/
-extern void PieceReverse(int, int);
+extern void PieceReverse();
 
 
 #endif  _PieceReverse_INCLUDE_
