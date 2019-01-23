@@ -21,7 +21,9 @@ int PieceJudge() {
 	int mouceStarageX = 0;	// マウスのx座標を保存する
 	int mouceStarageY = 0;	// マウスのy座標を保存する
 	static int isDrctFlg = FALSE;	// 方向が定まっているか >> TRUE:定まっている FALSE:定まっていない
+	static int isFirstFlg = TRUE;	// 最初かどうか >> TRUE:最初 FALSE:最初じゃない
 	int i = 0;
+
 
 	//マウス座標より要素数を割り出し配列へ代入
 	mousex = pt.x / 50 % 8 + 1;
@@ -41,10 +43,16 @@ int PieceJudge() {
 	{
 		while (1)
 		{
+
 			if (isDrctFlg == FALSE)
 			{
+
 				Drct = drctArray[i];
-				i++;
+				if (isFirstFlg == FALSE)
+				{
+					i++;
+				}
+				
 			}
 
 			/* caseの処理順序
@@ -80,10 +88,15 @@ int PieceJudge() {
 					else 
 					{  
 						isDrctFlg = FALSE;
+						isFirstFlg = FALSE;
 						mousex = mouceStarageX;
 						mousey = mouceStarageY;
 						break;
 					}
+				}
+				else
+				{
+					isFirstFlg = FALSE;
 				}
 				break;
 
@@ -111,6 +124,10 @@ int PieceJudge() {
 						break;
 					}
 				}
+				else
+				{
+					isFirstFlg = FALSE;
+				}
 				break;
 
 			// 右
@@ -137,6 +154,10 @@ int PieceJudge() {
 						break;
 					}
 				}
+				else
+				{
+					isFirstFlg = FALSE;
+				}
 				break;
 
 			// 右下
@@ -162,6 +183,10 @@ int PieceJudge() {
 						mousey = mouceStarageY;
 						break;
 					}
+				}
+				else
+				{
+					isFirstFlg = FALSE;
 				}
 				break;
 
@@ -190,6 +215,10 @@ int PieceJudge() {
 						break;
 					}
 				}
+				else
+				{
+					isFirstFlg = FALSE;
+				}
 				break;
 
 			// 左下
@@ -216,6 +245,10 @@ int PieceJudge() {
 						mousey = mouceStarageY;
 						break;
 					}
+				}
+				else
+				{
+					isFirstFlg = FALSE;
 				}
 				break;
 
@@ -244,6 +277,10 @@ int PieceJudge() {
 						break;
 					}
 				}
+				else
+				{
+					isFirstFlg = FALSE;
+				}
 				break;
 
 			// 左上
@@ -270,6 +307,10 @@ int PieceJudge() {
 						mousey = mouceStarageY;
 						break;
 					}
+				}
+				else
+				{
+					isFirstFlg = FALSE;
 				}
 				break;
 

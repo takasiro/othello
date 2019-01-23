@@ -17,7 +17,7 @@ static int whiteCnt;
 //黒の駒の総数
 static int blackCnt;
 //現在のプレイヤーカラー
-static int player;
+static int player = BLACK;
 //パスフラグ
 static int passFlg;
 //八方向見る順番
