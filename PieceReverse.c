@@ -12,7 +12,8 @@ void PieceReverse(int i, int j) {
 	int mouceStarageX;	// マウスのx座標を保存する
 	int mouceStarageY;	// マウスのy座標を保存する
 	static int isDrctFlg = FALSE;	// 方向が定まっているか >> TRUE:定まっている FALSE:定まっていない
-	int k = 0;
+	static int isFirstFlg = TRUE;	// 最初かどうか >> TRUE:最初 FALSE:最初じゃない
+	static int k = 0;
 
 	//マウス座標より要素数を割り出し配列へ代入
 	mousex = pt.x / 50 % 8 + 1;
@@ -29,12 +30,20 @@ void PieceReverse(int i, int j) {
 	//}
 	//マスが0なら置けるかどうか調べる
 
+	//
+	//
+	if(masu[mouceStarageY][mouceStarageX] != player)
+	masu[mouceStarageY][mouceStarageX] = player;
+
 	while (1)
 	{
 		if (isDrctFlg == FALSE)
 		{
 			Drct = drctArray[k];
-			k++;
+			if (isFirstFlg == FALSE) {
+				k++;
+			}
+			
 		}
 
 		/* caseの処理順序
@@ -67,6 +76,7 @@ void PieceReverse(int i, int j) {
 				else
 				{
 					isDrctFlg = FALSE;
+					isFirstFlg = FALSE;
 					mousex = mouceStarageX;
 					mousey = mouceStarageY;
 					break;
@@ -93,6 +103,7 @@ void PieceReverse(int i, int j) {
 				else
 				{
 					isDrctFlg = FALSE;
+					isFirstFlg = FALSE;
 					mousex = mouceStarageX;
 					mousey = mouceStarageY;
 					break;
@@ -118,6 +129,7 @@ void PieceReverse(int i, int j) {
 				else
 				{
 					isDrctFlg = FALSE;
+					isFirstFlg = FALSE;
 					mousex = mouceStarageX;
 					mousey = mouceStarageY;
 					break;
@@ -143,6 +155,7 @@ void PieceReverse(int i, int j) {
 				else
 				{
 					isDrctFlg = FALSE;
+					isFirstFlg = FALSE;
 					mousex = mouceStarageX;
 					mousey = mouceStarageY;
 					break;
@@ -168,6 +181,7 @@ void PieceReverse(int i, int j) {
 				else
 				{
 					isDrctFlg = FALSE;
+					isFirstFlg = FALSE;
 					mousex = mouceStarageX;
 					mousey = mouceStarageY;
 					break;
@@ -193,6 +207,7 @@ void PieceReverse(int i, int j) {
 				else
 				{
 					isDrctFlg = FALSE;
+					isFirstFlg = FALSE;
 					mousex = mouceStarageX;
 					mousey = mouceStarageY;
 					break;
@@ -218,6 +233,7 @@ void PieceReverse(int i, int j) {
 				else
 				{
 					isDrctFlg = FALSE;
+					isFirstFlg = FALSE;
 					mousex = mouceStarageX;
 					mousey = mouceStarageY;
 					break;
@@ -243,6 +259,7 @@ void PieceReverse(int i, int j) {
 				else
 				{
 					isDrctFlg = FALSE;
+					isFirstFlg = FALSE;
 					mousex = mouceStarageX;
 					mousey = mouceStarageY;
 					break;
@@ -260,4 +277,5 @@ void PieceReverse(int i, int j) {
 			break;
 		}
 	}  //while文終了
+
 }
