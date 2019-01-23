@@ -3,7 +3,7 @@
 
 void PassJudge()
 {
-	if (passFlg == true)
+	if (passFlg == TRUE)
 	{
 		//GAMEOVER
 	}

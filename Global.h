@@ -4,7 +4,7 @@
 #ifndef  _GLOBAL_INCLUDE_
 #define _GLOBAL_INCLUDE_
 
-#define  REVERSE    -
+#define  REVERSE    -1
 #define  BLACK      -1
 #define  EMPTY       0
 #define  WHITE       1
@@ -62,17 +62,6 @@ static POINT dot[4] = {
 	{ 100,300 },
 	{ 300,300 }
 };
-
-/************************************************
-関 数 名 :GetMasu()
-処理内容 :masuの先頭アドレスを受け取る
-引    数 :無し
-返 却 値 :BYTE*
-備　　考 :戻り値がBYTE*なことに注意
-*************************************************/
-static BYTE* GetMasu() {
-	return masu;
-}
 
 /************************************************
 関 数 名 :SetMasu(int i,int j,int num)

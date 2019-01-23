@@ -12,7 +12,7 @@ void PieceReverse(int i, int j) {
 	int mouceStarageX;	// マウスのx座標を保存する
 	int mouceStarageY;	// マウスのy座標を保存する
 	static int isDrctFlg = FALSE;	// 方向が定まっているか >> TRUE:定まっている FALSE:定まっていない
-	int i = 0;
+	int k = 0;
 
 	//マウス座標より要素数を割り出し配列へ代入
 	mousex = pt.x / 50 % 8 + 1;
@@ -33,8 +33,8 @@ void PieceReverse(int i, int j) {
 	{
 		if (isDrctFlg == FALSE)
 		{
-			Drct = drctArray[i];
-			i++;
+			Drct = drctArray[k];
+			k++;
 		}
 
 		/* caseの処理順序
@@ -254,9 +254,9 @@ void PieceReverse(int i, int j) {
 		}  //switch文終了
 
 		// どの方向も置けないなら
-		if (i == 8)
+		if (k == 8)
 		{
-			i = 0;
+			k = 0;
 			break;
 		}
 	}  //while文終了
