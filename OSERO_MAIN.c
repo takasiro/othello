@@ -1,6 +1,10 @@
 #include <windows.h>
 #include"Global.h"
 #include "PieceJudge.h"
+#include "PieceReverse.h"
+#include "PieceCount.h"
+#include "PlayerReverse.h"
+#include "AllJudge.h"
 
 //#define APP_NAME TEXT("OSERO");
 
@@ -114,7 +118,9 @@ LRESULT CALLBACK WindowProc(
 		pt.x = (pt.x / 50) * 50;//ç¿ïWÇògì‡Ç…ì¸ÇÍÇÈ
 		pt.y = (pt.y / 50) * 50;
 
-		PieceJudge();
+		if (PieceJudge() == TRUE) {
+			PieceReverse();
+		}
 
 		return 0;
 

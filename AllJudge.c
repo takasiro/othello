@@ -11,8 +11,8 @@
 #include <stdio.h>
 #include"Global.h"
 #include "AllJudge.h"
-int AllJudge(int x) {//まだ適当(xのこと)
-	
+int AllJudge() {//まだ適当(xのこと)
+
 	//二次元配列 masu[10][10]
 	//先攻は黒 -1
 	//後攻は白  1
@@ -29,12 +29,12 @@ int AllJudge(int x) {//まだ適当(xのこと)
 		for (j = 1; j <= 8; j++) {
 			NUM = masu[i][j];
 			if (masu[i][j] == 0) {//8方向を見る処理
-				
+
 				while (1)
 				{
 
 					if (isDrctFlg == FALSE) {
-							Drct = drctArray[i];
+						Drct = drctArray[i];
 						i++;
 					}
 
@@ -148,6 +148,7 @@ int AllJudge(int x) {//まだ適当(xのこと)
 		  //置けるならPieceJudge()?へとぶ
 		return 0;
 	}
+}
 
 /*
 0の時に8方向見て空白と同じ色ならbreak
