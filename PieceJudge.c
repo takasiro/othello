@@ -18,21 +18,23 @@ int PieceJudge() {
 	int mousex = 0;			// マウスのx座標から計算したマス目
 	int mousey = 0;			// マウスのy座標から計算したマス目
 	int Drct = 0;			// 方向(Direction)を保存する
-	int mouseStarageX = 0;	// マウスのx座標を保存する
-	int mouseStarageY = 0;	// マウスのy座標を保存する
+	int mouceStarageX = 0;	// マウスのx座標を保存する
+	int mouceStarageY = 0;	// マウスのy座標を保存する
 	static int isDrctFlg = FALSE;	// 方向が定まっているか >> TRUE:定まっている FALSE:定まっていない
 	static int isFirstFlg = TRUE;	// 最初かどうか >> TRUE:最初 FALSE:最初じゃない
-	int count = 0;
+	int i = 0;
 
 
-	//マウス座標の代入と保存
-	mousex = pt.x;
-	mousey = pt.y;
-	mouseStarageX = mousex;
-	mouseStarageY = mousey;
+	//マウス座標より要素数を割り出し配列へ代入
+	mousex = pt.y ;
+	mousey = pt.x;
+
+	//マウス座標の保存
+	mouceStarageX = mousex;
+	mouceStarageY = mousey;
 
 	//マスの中身を判断
-	if (masu[mousey][mousex] != EMPTY)
+	if (masu[mousex][mousey] != EMPTY)
 	{
 		return FALSE;
 	}
@@ -44,11 +46,13 @@ int PieceJudge() {
 
 			if (isDrctFlg == FALSE)
 			{
+
 				Drct = drctArray[i];
 				if (isFirstFlg == FALSE)
 				{
-					count++;
+					i++;
 				}
+				
 			}
 
 			/* caseの処理順序
@@ -65,28 +69,28 @@ int PieceJudge() {
 
 			// 上
 			case eN: 
-				if (masu[mousey - 1][mousex] == player * REVERSE)
+				if (masu[mousex][mousey - 1] == player * REVERSE)
 				{
 					Drct = eN;
 					isDrctFlg = TRUE;
-					mousey = mousey - 1;
 					mousex = mousex;
+					mousey = mousey - 1;
 
-					if (masu[mousey - 1][mousex] == player)
+					if (masu[mousex][mousey - 1] == player)
 					{
 						return TRUE;
 					}
-					else if (masu[mousey - 1][mousex] == player * REVERSE)
+					else if (masu[mousex][mousey - 1] == player * REVERSE) 
 					{
-						mousey = mousey - 1;
 						mousex = mousex;
+						mousey = mousey - 1;
 					}
 					else 
 					{  
 						isDrctFlg = FALSE;
 						isFirstFlg = FALSE;
-						mousey = mouseStarageY;
-						mousex = mouseStarageX;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
 						break;
 					}
 				}
@@ -98,25 +102,25 @@ int PieceJudge() {
 
 			// 右上
 			case eNE:
-				if (masu[mousey - 1][mousex + 1] == player * REVERSE)
+				if (masu[mousex + 1][mousey - 1] == player * REVERSE)
 				{
 					Drct = eNE;
-					mousey = mousey - 1;
 					mousex = mousex + 1;
-					if (masu[mousey - 1][mousex + 1] == player)
+					mousey = mousey - 1;
+					if (masu[mousex + 1][mousey - 1] == player)
 					{
 						return TRUE;
 					}
-					else if (masu[mousey - 1][mousex + 1] == player * REVERSE)
+					else if (masu[mousex + 1][mousey - 1] == player * REVERSE)
 					{
+						mousex = mousex;
 						mousey = mousey - 1;
-						mousex = mousex + 1;
 					}
 					else
 					{
 						isDrctFlg = FALSE;
-						mousey = mouseStarageY;
-						mousex = mouseStarageX;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
 						break;
 					}
 				}
@@ -128,25 +132,25 @@ int PieceJudge() {
 
 			// 右
 			case eE:
-				if (masu[mousey][mousex + 1] == player * REVERSE)
+				if (masu[mousex + 1][mousey] == player * REVERSE)
 				{
 					Drct = eE;
-					mousey = mousey;
 					mousex = mousex + 1;
-					if (masu[mousey][mousex + 1] == player)
+					mousey = mousey;
+					if (masu[mousex + 1][mousey] == player)
 					{
 						return TRUE;
 					}
-					else if (masu[mousey][mousex + 1] == player * REVERSE)
+					else if (masu[mousex + 1][mousey] == player * REVERSE)
 					{
-						mousey = mousey;
-						mousex = mousex + 1;
+						mousex = mousex;
+						mousey = mousey - 1;
 					}
 					else
 					{
 						isDrctFlg = FALSE;
-						mousey = mouseStarageY;
-						mousex = mouseStarageX;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
 						break;
 					}
 				}
@@ -158,25 +162,25 @@ int PieceJudge() {
 
 			// 右下
 			case eSE:
-				if (masu[mousey + 1][mousex + 1] == player * REVERSE)
+				if (masu[mousex + 1][mousey + 1] == player * REVERSE)
 				{
 					Drct = eSE;
-					mousey = mousey + 1;
 					mousex = mousex + 1;
-					if (masu[mousey + 1][mousex + 1] == player)
+					mousey = mousey + 1;
+					if (masu[mousex + 1][mousey + 1] == player)
 					{
 						return TRUE;
 					}
-					else if (masu[mousey + 1][mousex + 1] == player * REVERSE)
+					else if (masu[mousex + 1][mousey + 1] == player * REVERSE)
 					{
-						mousey = mousey + 1;
-						mousex = mousex + 1;
+						mousex = mousex;
+						mousey = mousey - 1;
 					}
 					else
 					{
 						isDrctFlg = FALSE;
-						mousey = mouseStarageY;
-						mousex = mouseStarageX;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
 						break;
 					}
 				}
@@ -188,26 +192,26 @@ int PieceJudge() {
 
 			// 下
 			case eS:
-				if (masu[mousey + 1][mousex] == player * REVERSE)
+				if (masu[mousex][mousey + 1] == player * REVERSE)
 				{
 					Drct = eS;
-					mousey = mousey + 1;
 					mousex = mousex;
+					mousey = mousey + 1;
 
-					if (masu[mousey + 1][mousex] == player)
+					if (masu[mousex][mousey + 1] == player)
 					{
 						return TRUE;
 					}
-					else if (masu[mousey + 1][mousex] == player * REVERSE)
+					else if (masu[mousex][mousey + 1] == player * REVERSE)
 					{
-						mousey = mousey + 1;
 						mousex = mousex;
+						mousey = mousey - 1;
 					}
 					else
 					{
 						isDrctFlg = FALSE;
-						mousey = mouseStarageY;
-						mousex = mouseStarageX;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
 						break;
 					}
 				}
@@ -219,26 +223,26 @@ int PieceJudge() {
 
 			// 左下
 			case eSW:
-				if (masu[mousey + 1][mousex - 1] == player * REVERSE)
+				if (masu[mousex - 1][mousey + 1] == player * REVERSE)
 				{
 					Drct = eSW;
-					mousey = mousey + 1;
 					mousex = mousex - 1;
+					mousey = mousey + 1;
 
-					if (masu[mousey + 1][mousex - 1] == player)
+					if (masu[mousex - 1][mousey + 1] == player)
 					{
 						return TRUE;
 					}
-					else if (masu[mousey + 1][mousex - 1] == player * REVERSE)
+					else if (masu[mousex - 1][mousey + 1] == player * REVERSE)
 					{
-						mousey = mousey + 1;
-						mousex = mousex - 1;
+						mousex = mousex;
+						mousey = mousey - 1;
 					}
 					else
 					{
 						isDrctFlg = FALSE;
-						mousey = mouseStarageY;
-						mousex = mouseStarageX;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
 						break;
 					}
 				}
@@ -250,57 +254,59 @@ int PieceJudge() {
 
 			// 左
 			case eW:
-				if (masu[mousey][mousex - 1] == player * REVERSE)
+				if (masu[mousex - 1][mousey] == player * REVERSE)
 				{
 					Drct = eW;
-					mousey = mousey;
-					mousex = mousex - 1;
+					isDrctFlg = TRUE;
+				}
 
-					if (masu[mousey][mousex - 1] == player)
+					if (masu[mousex - 1][mousey] == player)
 					{
+						isFirstFlg = FALSE;
+						isDrctFlg = FALSE;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
 						return TRUE;
 					}
-					else if (masu[mousey][mousex - 1] == player * REVERSE)
+					else if (masu[mousex - 1][mousey] == player * REVERSE)
 					{
-						mousey = mousey;
-						mousex = mousex - 1;
+						mousex = mousex-1;
+						mousey = mousey ;
 					}
 					else
 					{
+						isFirstFlg = FALSE;
 						isDrctFlg = FALSE;
-						mousey = mouseStarageY;
-						mousex = mouseStarageX;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
 						break;
 					}
-				}
-				else
-				{
-					isFirstFlg = FALSE;
-				}
+				
+				
 				break;
 
 			// 左上
 			case eNW:
-				if (masu[mousey - 1][mousex - 1] == player * REVERSE)
+				if (masu[mousex - 1][mousey - 1] == player * REVERSE)
 				{
 					Drct = eNW;
-					mousey = mousey - 1;
 					mousex = mousex - 1;
+					mousey = mousey - 1;
 
-					if (masu[mousey - 1][mousex - 1] == player)
+					if (masu[mousex - 1][mousey - 1] == player)
 					{
 						return TRUE;
 					}
-					else if (masu[mousey - 1][mousex - 1] == player * REVERSE)
+					else if (masu[mousex - 1][mousey - 1] == player * REVERSE)
 					{
+						mousex = mousex;
 						mousey = mousey - 1;
-						mousex = mousex - 1;
 					}
 					else
 					{
 						isDrctFlg = FALSE;
-						mousey = mouseStarageY;
-						mousex = mouseStarageX;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
 						break;
 					}
 				}
@@ -317,7 +323,7 @@ int PieceJudge() {
 			}  //switch文終了
 
 			// どの方向も置けないなら
-			if (count == 8)
+			if (i == 8)
 			{
 				return FALSE;
 			}

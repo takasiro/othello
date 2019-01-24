@@ -16,7 +16,6 @@
 
 
 
-
 /*******************************************************************************
 関数名 : WindowProc
 機能   : メッセージ処理を行う
@@ -93,15 +92,17 @@ LRESULT CALLBACK WindowProc(
 
 		for (i = 1; i < 9; i++) {
 			for (j = 1; j < 9; j++) {
-				if (masu[i][j] == WHITE) { //２次元配列を黒に
-					SelectObject(hdc, hBrush[1]);  //白
-					Ellipse(hdc, (j-1)*50, (i-1)*50, j* 50,i * 50);
+				if (masu[j][i] != EMPTY) {
+					if (masu[j][i] == WHITE) { //２次元配列を黒に
+						SelectObject(hdc, hBrush[1]);  //白
+						//Ellipse(hdc, (j-1)*50, (i-1)*50, j* 50,i * 50);
+					}
+					else if (masu[j][i] == BLACK) {
+						SelectObject(hdc, hBrush[2]);  //黒
+						//Ellipse(hdc, (i - 1) * 50, (j - 1) * 50, j * 50, i * 50);
+					}
+					Ellipse(hdc, (i - 1) * 50, (j - 1) * 50, i * 50, j * 50);
 				}
-				else if (masu[i][j] == BLACK) {
-					SelectObject(hdc, hBrush[2]);  //黒
-					Ellipse(hdc, (j - 1) * 50, (i - 1) * 50, j * 50, i * 50);
-				}
-				//Ellipse(hdc, (i - 1) * 50, (j - 1) * 50, i * 50, j * 50);
 			}
 		}
 
@@ -115,11 +116,15 @@ LRESULT CALLBACK WindowProc(
 	case WM_LBUTTONDOWN:
 		pt.x = LOWORD(lParam); //座標
 		pt.y = HIWORD(lParam); //座標
+		pt.x = (int)pt.x / 50+1;    //座標を枠内に入れる
+		pt.y = (int)pt.y/ 50+1;    //　・・
+
+		//(masu[pt.x][pt.y]) = player;
 
 		if (PieceJudge() == TRUE) {
 			PieceReverse();
 		}
-
+		InvalidateRect(hWnd, NULL, NULL);
 		return 0;
 
 		//キーボードの処理
