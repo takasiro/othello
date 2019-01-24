@@ -8,4 +8,9 @@ void PlayerReverse() {
 		player = BLACK;
 	}
 
+	//’u‚¯‚È‚©‚Á‚½‚çƒpƒX‚©”»’f
+	if (AllJudge() == FALSE) {
+		PassJudge();
+	}
+
 }
