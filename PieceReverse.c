@@ -155,7 +155,7 @@ void PieceReverse() {
 			}
 			else if (masu[mousey][mousex + 1] == player) {
 				for (j = mousex; j > mouceStarageX - 1; j--) {
-					if (masu[mousex][j] != player) masu[mousex][j] = player;
+					if (masu[j][mousex] != player) masu[j][mousex] = player;
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;

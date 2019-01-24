@@ -44,7 +44,7 @@ int PieceJudge() {
 
 			if (isDrctFlg == FALSE)
 			{
-				Drct = drctArray[i];
+				Drct = drctArray[count];
 				if (isFirstFlg == FALSE)
 				{
 					count++;

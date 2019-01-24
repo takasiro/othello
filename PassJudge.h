@@ -1,6 +1,7 @@
 #pragma once
 #include "Global.h"
 #include "PlayerReverse.h"
+#include "AllJudge.h"
 
 #ifndef _PASS_JUDGE_
 #define _PASS_JUDGE_
