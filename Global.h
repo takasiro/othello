@@ -9,22 +9,22 @@
 #define  EMPTY       0
 #define  WHITE       1
 
-POINT pt; //マウス座標
-POINT bt; //キーボード座標
+extern POINT pt; //マウス座標
+ extern  POINT bt; //キーボード座標
 
 //白い駒の総数
-static int whiteCnt;
+ extern int whiteCnt;
 //黒の駒の総数
-static int blackCnt;
+ extern int blackCnt;
 //現在のプレイヤーカラー
-static int player = BLACK;
+ extern int player;
 //パスフラグ
-static int passFlg;
+ extern int passFlg;
 //八方向見る順番
-static const int drctArray[8] = { 0,1,2,3,4,5,6,7 };
+ extern const int drctArray[8];
 
 //シーン管理
-typedef enum  Judge {
+ typedef enum  Judge {
 	eAllJudge,
 	eClickJudge,
 	eReverseJudge
@@ -42,26 +42,10 @@ typedef enum Direction {
 	eNW,
 };
 
-static int masu[10][10] = {
-	{ 0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,1,-1,0,0,0,0 },
-	{ 0,0,0,0,-1,1,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,0,0,0 }
-};
+extern int masu[10][10];
 
 
-static POINT dot[4] = {
-	{ 100,100 },
-	{ 300,100 },
-	{ 100,300 },
-	{ 300,300 }
-};
+extern POINT dot[4];
 
 /************************************************
 関 数 名 :SetMasu(int i,int j,int num)
@@ -74,7 +58,7 @@ static POINT dot[4] = {
 備　　考 :マウスがあるマスに
 *************************************************/
 static void SetMasu(int i, int j, int color) {
-	masu[i][j] = color;
+//	masu[i][j] = color;
 }
 
 #endif _GLOBAL_INCLUDE_

@@ -26,8 +26,8 @@ int PieceJudge() {
 
 
 	//マウス座標より要素数を割り出し配列へ代入
-	mousex = pt.x / 50 % 8 + 1;
-	mousey = pt.y / 50 % 8 + 1;
+	mousex = pt.y ;
+	mousey = pt.x;
 
 	//マウス座標の保存
 	mouceStarageX = mousex;
@@ -257,30 +257,32 @@ int PieceJudge() {
 				if (masu[mousex - 1][mousey] == player * REVERSE)
 				{
 					Drct = eW;
-					mousex = mousex - 1;
-					mousey = mousey;
+					isDrctFlg = TRUE;
+				}
 
 					if (masu[mousex - 1][mousey] == player)
 					{
+						isFirstFlg = FALSE;
+						isDrctFlg = FALSE;
+						mousex = mouceStarageX;
+						mousey = mouceStarageY;
 						return TRUE;
 					}
 					else if (masu[mousex - 1][mousey] == player * REVERSE)
 					{
-						mousex = mousex;
-						mousey = mousey - 1;
+						mousex = mousex-1;
+						mousey = mousey ;
 					}
 					else
 					{
+						isFirstFlg = FALSE;
 						isDrctFlg = FALSE;
 						mousex = mouceStarageX;
 						mousey = mouceStarageY;
 						break;
 					}
-				}
-				else
-				{
-					isFirstFlg = FALSE;
-				}
+				
+				
 				break;
 
 			// 左上
