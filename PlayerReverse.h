@@ -1,5 +1,7 @@
 #pragma once
 #include <stdio.h>
+#include "AllJudge.h"
+#include "PassJudge.h"
 
 #ifndef _PLAYER_REVERSE_
 #define _PLAYER_REVERSE_
