@@ -10,7 +10,7 @@ extern int blackCnt;
 //現在のプレイヤーカラー
 extern int player = BLACK;
 //パスフラグ
-extern int passFlg;
+extern int passFlg = FALSE;
 //八方向見る順番
 extern const int drctArray[8] = { 0,1,2,3,4,5,6,7 };
 
