@@ -64,35 +64,31 @@ void PieceReverse() {
 		case eN:
 			if (masu[mousey - 1][mousex] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				Drct = eN;
 				isDrctFlg = TRUE;
 			}
-			/*mousey = mousey;
-			mousex = mousex - 1;*/
 
 			if (masu[mousey - 1][mousex] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				mousey = mousey - 1;
 				mousex = mousex;
 			}
 			else if (masu[mousey - 1][mousex] == player) {
-				for (i = mousey; i < mouceStarageY + 1; i++) {
+				for (i = mousey; i < mouceStarageY ; i++) {
 					if (masu[i][mousex] != player) masu[i][mousex] = player;
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				/*mousey = mouceStarageX;
-				mousex = mouceStarageY;*/
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 
@@ -101,37 +97,36 @@ void PieceReverse() {
 		case eNE:
 			if (masu[mousey - 1][mousex + 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				Drct = eNE;
 				isDrctFlg = TRUE;
 			}
-			/*mousey = mousey;
-			mousex = mousex - 1;*/
 
 			if (masu[mousey - 1][mousex + 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				mousey = mousey - 1;
 				mousex = mousex + 1;
 			}
 			else if (masu[mousey - 1][mousex + 1] == player) {
-				for (i = mousey; i < mouceStarageY + 1; i++) {
-					for (j = mousex; j > mouceStarageX - 1; j--) {
-						if (masu[i][j] != player) masu[i][j] = player;
-					}
+				i = mouceStarageY;
+				j = mouceStarageX;
+				while (i!= mousey-1 && j!= mousex+1) {
+					
+					if (masu[i][j] != player) masu[i][j] = player;
+					i--;
+					j++;
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			break;
@@ -140,35 +135,31 @@ void PieceReverse() {
 		case eE:
 			if (masu[mousey][mousex + 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				Drct = eE;
 				isDrctFlg = TRUE;
 			}
-			/*mousey = mousey;
-			mousex = mousex - 1;*/
 
 			if (masu[mousey][mousex + 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				mousey = mousey;
 				mousex = mousex + 1;
 			}
 			else if (masu[mousey][mousex + 1] == player) {
-				for (j = mousex; j > mouceStarageX - 1; j--) {
-					if (masu[j][mousex] != player) masu[j][mousex] = player;
+				for (j = mouceStarageX; j < mousex+1 ; j++) {
+					if (masu[mousey][j] != player) masu[mousey][j] = player;
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			break;
@@ -176,16 +167,13 @@ void PieceReverse() {
 		case eSE:
 			if (masu[mousey + 1][mousex + 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				Drct = eSE;
 				isDrctFlg = TRUE;
 			}
-			/*mousey = mousey;
-			mousex = mousex - 1;*/
+		
 
 			if (masu[mousey + 1][mousex + 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				mousey = mousey + 1;
 				mousex = mousex + 1;
 			}
@@ -197,16 +185,16 @@ void PieceReverse() {
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			break;
@@ -215,35 +203,32 @@ void PieceReverse() {
 		case eS:
 			if (masu[mousey + 1][mousex] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				Drct = eS;
 				isDrctFlg = TRUE;
 			}
-			/*mousey = mousey;
-			mousex = mousex - 1;*/
+
 
 			if (masu[mousey + 1][mousex] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				mousey = mousey + 1;
 				mousex = mousex;
 			}
 			else if (masu[mousey + 1][mousex] == player) {
-				for (i = mousey; i > mouceStarageY - 1; i--) {
+				for (i = mousey; i > mouceStarageY ; i--) {
 					if (masu[i][mousex] != player) masu[i][mousex] = player;
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			break;
@@ -252,16 +237,12 @@ void PieceReverse() {
 		case eSW:
 			if (masu[mousey + 1][mousex - 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				Drct = eSW;
 				isDrctFlg = TRUE;
 			}
-			/*mousey = mousey;
-			mousex = mousex - 1;*/
 
 			if (masu[mousey + 1][mousex - 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				mousey = mousey + 1;
 				mousex = mousex - 1;
 			}
@@ -273,16 +254,16 @@ void PieceReverse() {
 				}
 			isDrctFlg = FALSE;
 			isFirstFlg = FALSE;
-			mousey = mouceStarageX;
-			mousex = mouceStarageY;
+			mousey = mouceStarageY;
+			mousex = mouceStarageX;
 			break;
 		}
 		else
 		{
 			isDrctFlg = FALSE;
 			isFirstFlg = FALSE;
-			mousey = mouceStarageX;
-			mousex = mouceStarageY;
+			mousey = mouceStarageY;
+			mousex = mouceStarageX;
 			break;
 		}
 		break;
@@ -291,18 +272,14 @@ void PieceReverse() {
 		case eW:
 			if (masu[mousey][mousex - 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				Drct = eW;
 				isDrctFlg = TRUE;
 			}
-			/*mousey = mousey;
-			mousex = mousex - 1;*/
 
 			if (masu[mousey][mousex - 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				mousey = mousey;
-				mousex = mousex + 1;
+				mousex = mousex - 1;
 			}
 			else if (masu[mousey][mousex - 1] == player) {
 				for (j = mousex; j < mouceStarageX + 1; j++) {
@@ -310,16 +287,16 @@ void PieceReverse() {
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			break;
@@ -328,37 +305,33 @@ void PieceReverse() {
 		case eNW:
 			if (masu[mousey - 1][mousex - 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				Drct = eNW;
 				isDrctFlg = TRUE;
 			}
-			/*mousey = mousey;
-			mousex = mousex - 1;*/
 
 			if (masu[mousey - 1][mousex - 1] == player * REVERSE)
 			{
-				//masu[mousey][mousex - 1] = player * REVERSE;
 				mousey = mousey - 1;
 				mousex = mousex - 1;
 			}
 			else if (masu[mousey - 1][mousex - 1] == player) {
-				for (i = mousey; i > mouceStarageY - 1; i--) {
-					for (j = mousex; j > mouceStarageX - 1; j--) {
+				for (i = mousey; i < mouceStarageY; i++) {
+					for (j = mousex; j < mouceStarageX; j++) {
 						if (masu[i][j] != player) masu[i][j] = player;
 					}
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageX;
-				mousex = mouceStarageY;
+				mousey = mouceStarageY;
+				mousex = mouceStarageX;
 				break;
 			}
 			break;
