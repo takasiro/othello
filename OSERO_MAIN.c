@@ -40,13 +40,17 @@ LRESULT CALLBACK WindowProc(
 		hBrush[0] = CreateSolidBrush(RGB(0, 0xAA, 0));          // 盤面（緑）
 		hBrush[1] = CreateSolidBrush(RGB(0xFF, 0xFF, 0xFF));    // WHITE
 		hBrush[2] = CreateSolidBrush(RGB(0, 0, 0));		        // BLACK
-		hBrush[3] = CreateSolidBrush(RGB(0xff, 0, 0));         //赤キーボードの現在位置表示用
+		hBrush[3] = CreateSolidBrush(RGB(0xff, 0, 0));          // 赤キーボードの現在位置表示用
+		hBrush[4] = CreateSolidBrush(RGB(122,122,122));		    // 置ける場所
 
 		//キーボードによる移動する四角
 		key.left = 0;
 		key.top = 0;
 		key.right = 50;
 		key.bottom = 50;
+
+		//置ける場所の表示
+		AllJudge();
 
 		return 0;
 
@@ -65,18 +69,14 @@ LRESULT CALLBACK WindowProc(
 		hdc = BeginPaint(hWnd, &ps);
 
 		// オセロ盤の描画
-
 		SelectObject(hdc, hBrush[0]);
 		Rectangle(hdc, 0, 0, 401, 401);
-
-
 		for (i = 0; i < 7; i++) {
 			MoveToEx(hdc, 50 * (i + 1), 0, NULL);
 			LineTo(hdc, 50 * (i + 1), 400);
 			MoveToEx(hdc, 0, 50 * (i + 1), NULL);
 			LineTo(hdc, 400, 50 * (i + 1));
 		}
-
 		SelectObject(hdc, hBrush[2]);
 		for (i = 0; i < 4; i++) {
 			Ellipse(hdc, dot[i].x - 5, dot[i].y - 5,
@@ -87,6 +87,7 @@ LRESULT CALLBACK WindowProc(
 		SelectObject(hdc, hBrush[3]);	//赤
 		Rectangle(hdc, key.left, key.top, key.right, key.bottom);
 
+		//駒の描画
 		for (i = 1; i < 9; i++) {
 			for (j = 1; j < 9; j++) {
 				if (masu[j][i] != EMPTY) {
@@ -103,10 +104,19 @@ LRESULT CALLBACK WindowProc(
 			}
 		}
 
+		//置ける場所の表示
+		for (i = 1; i <= 8; i++) {
+			for (j = 1; j <= 8; j++) {
+				if (canPutMasu[j][i] == TRUE) {
+						SelectObject(hdc, hBrush[4]);
+						Ellipse(hdc, (i - 1) * 50 + 15, (j - 1) * 50 + 15, i * 50 - 15, j * 50 - 15);
+				}
+				
+			}
+		}
 
 
 		EndPaint(hWnd, &ps);
-
 
 		return 0;
 

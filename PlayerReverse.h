@@ -1,5 +1,6 @@
 #pragma once
 #include <stdio.h>
+#include "Global.h"
 #include "AllJudge.h"
 #include "PassJudge.h"
 

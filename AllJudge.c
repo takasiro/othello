@@ -8,9 +8,11 @@
 
 #include <stdio.h>
 #include "AllJudge.h"
-int AllJudge() {
+void AllJudge() {
 	int i, j, k;
 	static int isDrctFlg = FALSE;
+
+	InitCanPutMasu();
 
 	for (i = 1; i <= 8;i++) {
 		for (j = 1; j <= 8;j++) {
@@ -30,7 +32,7 @@ int AllJudge() {
 					//一つ先が異色なら一つ先を見る
 					if (masu[mousey][mousex] == player * REVERSE)
 					{
-						//masu[mousey][mousex] = player;
+						
 						SwitchShift(k);
 						isDrctFlg = TRUE;
 
@@ -39,7 +41,11 @@ int AllJudge() {
 						{
 							if (masu[mousey][mousex] == player)
 							{
-								return TRUE;
+								//return TRUE;
+								canPutMasu[j][i] = TRUE;
+								mousey = j;
+								mousex = i;
+								isDrctFlg = FALSE;
 							}
 							else if (masu[mousey][mousex] == player * REVERSE)
 							{
@@ -49,13 +55,29 @@ int AllJudge() {
 							else
 							{
 								isDrctFlg = FALSE;
+								mousey = j;
+								mousex = i;
 							}
 						}  //while文終了
 					}  //if文終了
+					else
+					{
+						isDrctFlg = FALSE;
+						mousey = j;
+						mousex = i;
+					}
 				}  //for文(k)終了
 			}  //else文終了
 		}  //for文(j)終了
 	}  //for文(i)終了
+}
 
-	return FALSE;
+void InitCanPutMasu() {
+	int i, j;
+
+	for (i = 1; i <= 8;i++) {
+		for (j = 1; j <= 8;j++) {
+			canPutMasu[j][i] = FALSE;
+		}
+	}
 }

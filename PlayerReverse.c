@@ -1,6 +1,10 @@
 #include <stdio.h>
-#include "Global.h"
+#include "PlayerReverse.h"
+
 void PlayerReverse() {
+	int i, j;
+	int PassJudgeFlg = FALSE;
+
 	if (player == BLACK) {
 		player = WHITE;
 	}
@@ -8,8 +12,18 @@ void PlayerReverse() {
 		player = BLACK;
 	}
 
-	//置けなかったらパスか判断
-	if (AllJudge() == FALSE) {
+	AllJudge();
+
+	//置けるところがあればフラグがTRUEになりパスにはならない
+	for (i = 1; i <= 8; i++) {
+		for (j = 1; j <= 8; j++) {
+			if (canPutMasu[j][i] == TRUE) {
+				PassJudgeFlg = TRUE;
+			}
+		}
+	}
+	//置くところが無かったらパス
+	if (PassJudgeFlg == FALSE) {
 		PassJudge();
 	}
 

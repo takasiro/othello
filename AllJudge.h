@@ -12,6 +12,7 @@
 返 却 値 :1：置ける 0：置けない　
 備　　考 :無し
 ***************************************************/
-extern int AllJudge();
+extern void AllJudge();
+extern void InitCanPutMasu();
 
 #endif _ALL_JUDGE_
