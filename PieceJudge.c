@@ -18,8 +18,8 @@ int PieceJudge() {
 	static int isDrctFlg = FALSE;	// 方向が定まっているか >> TRUE:定まっている FALSE:定まっていない
 	int i;
 	//マウス座標の代入と保存
-	mousex = (int)pt.x / 50 + 1;
-	mousey = (int)pt.y / 50 + 1;
+	mousex = (int)pt.x;
+	mousey = (int)pt.y;
 	mouseStorageX = mousex;
 	mouseStorageY = mousey;
 

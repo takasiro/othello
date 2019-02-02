@@ -16,7 +16,8 @@
 
 
 extern POINT pt; //マウス座標
- extern  POINT bt; //キーボード座標
+extern  POINT bt; //キーボード座標
+extern RECT key;  //キーボードの四角
 
 //白い駒の総数
  extern int whiteCnt;

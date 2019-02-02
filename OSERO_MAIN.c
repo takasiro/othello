@@ -42,6 +42,12 @@ LRESULT CALLBACK WindowProc(
 		hBrush[2] = CreateSolidBrush(RGB(0, 0, 0));		        // BLACK
 		hBrush[3] = CreateSolidBrush(RGB(0xff, 0, 0));         //赤キーボードの現在位置表示用
 
+		//キーボードによる移動する四角
+		key.left = 0;
+		key.top = 0;
+		key.right = 50;
+		key.bottom = 50;
+
 		return 0;
 
 	case WM_DESTROY:  // ウィンドウ破棄時の処理
@@ -77,6 +83,9 @@ LRESULT CALLBACK WindowProc(
 				dot[i].x + 5, dot[i].y + 5);
 		}
 
+		//キーボードの選択中の場所を表示
+		SelectObject(hdc, hBrush[3]);	//赤
+		Rectangle(hdc, key.left, key.top, key.right, key.bottom);
 
 		for (i = 1; i < 9; i++) {
 			for (j = 1; j < 9; j++) {
@@ -94,6 +103,8 @@ LRESULT CALLBACK WindowProc(
 			}
 		}
 
+
+
 		EndPaint(hWnd, &ps);
 
 
@@ -105,6 +116,9 @@ LRESULT CALLBACK WindowProc(
 		//マウス座標の取得
 		pt.x = LOWORD(lParam);
 		pt.y = HIWORD(lParam);
+		pt.x = (int)pt.x / 50 + 1;
+		pt.y = (int)pt.y / 50 + 1;
+
 
 		if (PieceJudge() == TRUE) {
 			//駒をひっくり返す
@@ -114,12 +128,47 @@ LRESULT CALLBACK WindowProc(
 			//playerを交代
 			PlayerReverse();
 		}
-		InvalidateRect(hWnd, NULL, NULL);
+		InvalidateRect(hWnd, NULL, FALSE);
 		return 0;
 
 		//キーボードの処理
 	case WM_KEYDOWN:
-	
+		if (wParam == VK_LEFT && bt.x > 0) {
+			key.right -= 50;
+			key.left -= 50;
+			bt.x--;
+			
+		}
+		if (wParam == VK_RIGHT && bt.x < 7) {
+			key.right += 50;
+			key.left += 50;
+			if (bt.x < 7)bt.x++;
+		}
+		if (wParam == VK_UP && bt.y > 0) {
+			key.top -= 50;
+			key.bottom -= 50;
+			bt.y--;
+		}
+		if (wParam == VK_DOWN && bt.y < 7) {
+			key.top += 50;
+			key.bottom += 50;
+			bt.y++;
+		}
+		if (wParam == VK_SPACE) {
+			pt.x = bt.x + 1;
+			pt.y = bt.y + 1;
+
+			if (PieceJudge() == TRUE) {
+				//駒をひっくり返す
+				PieceReverse();
+				//現在の座標をplayerに変更
+				masu[mousey][mousex] = player;
+				//playerを交代
+				PlayerReverse();
+			}
+		}
+
+		InvalidateRect(hWnd, NULL, FALSE);
 
 		return 0;
 

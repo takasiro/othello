@@ -6,10 +6,8 @@ void PieceReverse() {
 	int i,j;
 	int isDrctFlg = FALSE;
 	int changeCount = 0;
-	//int changeCount = 0;
-	//マウス座標の代入と保存
-	mousex = (int)pt.x / 50 + 1;
-	mousey = (int)pt.y / 50 + 1;
+	mousex = (int)pt.x;
+	mousey = (int)pt.y;
 	mouseStorageX = mousex;
 	mouseStorageY = mousey;
 
