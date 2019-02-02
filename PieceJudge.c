@@ -15,16 +15,11 @@
 *************************************************/
 int PieceJudge() {
 
-	int Drct = 0;			// 方向(Direction)を保存する
-	int mouseStorageX = 0;	// マウスのx座標を保存する
-	int mouseStorageY = 0;	// マウスのy座標を保存する
 	static int isDrctFlg = FALSE;	// 方向が定まっているか >> TRUE:定まっている FALSE:定まっていない
 	int i;
-
-
 	//マウス座標の代入と保存
-	mousex = pt.x;
-	mousey = pt.y;
+	mousex = (int)pt.x / 50 + 1;
+	mousey = (int)pt.y / 50 + 1;
 	mouseStorageX = mousex;
 	mouseStorageY = mousey;
 
@@ -43,7 +38,7 @@ int PieceJudge() {
 			//一つ先が異色なら一つ先を見る
 			if (masu[mousey][mousex] == player * REVERSE)
 			{
-				masu[mousey][mousex] = player;
+
 				SwitchShift(i);
 				isDrctFlg = TRUE;
 
@@ -52,11 +47,12 @@ int PieceJudge() {
 				{
 					if (masu[mousey][mousex] == player)
 					{
+						mousey = mouseStorageY;
+						mousex = mouseStorageX;
 						return TRUE;
 					}
 					else if (masu[mousey][mousex] == player * REVERSE)
 					{
-						masu[mousey][mousex] = player;
 						SwitchShift(i);
 					}
 					//先が0だったらひっくり返さない

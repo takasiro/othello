@@ -37,6 +37,5 @@ void SwitchShift( int Direction)
 		mousey = mousey + UP;
 		mousex = mousex + LEFT;
 		break;
-
-	}  //switchï∂èIóπ
+	}
 }

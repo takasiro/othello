@@ -50,6 +50,8 @@ typedef enum Direction {
 
 extern int mousex;
 extern int mousey;
+static int mouseStorageX;	// マウスのx座標を保存する
+static int mouseStorageY;	// マウスのy座標を保存する
 
 extern int masu[10][10];
 

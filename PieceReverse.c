@@ -3,14 +3,79 @@
 #include "PieceReverse.h"
 
 void PieceReverse() {
-	/*
-	*/
+	int i,j;
+	int isDrctFlg = FALSE;
+	int changeCount = 0;
+	//int changeCount = 0;
+	//マウス座標の代入と保存
+	mousex = (int)pt.x / 50 + 1;
+	mousey = (int)pt.y / 50 + 1;
+	mouseStorageX = mousex;
+	mouseStorageY = mousey;
 
-	int mousey;			// マウスのx座標から計算したマス目
-	int mousex;			// マウスのy座標から計算したマス目
+	for (i = 0; i <= 8; i++)
+	{
+		SwitchShift(i);	//配列の要素数をずらす
+
+		//一つ先が異色なら一つ先を見る
+		if (masu[mousey][mousex] == player * REVERSE)
+		{
+
+			SwitchShift(i);
+			changeCount++;
+			isDrctFlg = TRUE;
+
+			//先が同色なら
+			while (isDrctFlg == TRUE)
+			{
+				if (masu[mousey][mousex] == player)
+				{
+					mousey = mouseStorageY;
+					mousex = mouseStorageX;
+
+					//ひっくり返す処理
+					for (j = 0; j < changeCount;j++) {
+						SwitchShift(i);
+						masu[mousey][mousex] = player;
+					}
+
+					mousey = mouseStorageY;
+					mousex = mouseStorageX;
+					isDrctFlg = FALSE;
+					changeCount = 0;
+				}
+				else if (masu[mousey][mousex] == player * REVERSE)
+				{
+					SwitchShift(i);
+					changeCount++;
+				}
+				//先が0だったらひっくり返さない
+				else
+				{
+					isDrctFlg = FALSE;
+					mousey = mouseStorageY;
+					mousex = mouseStorageX;
+				}
+			}
+		}
+		else
+		{
+			mousey = mouseStorageY;
+			mousex = mouseStorageX;
+		}
+
+
+	}  //for文終了
+}
+
+//for (i = mousey; i < mouseStorageY ; i++) {
+//if (masu[i][mousex] != player) masu[i][mousex] = player;
+//}
+
+	/*
+
+
 	int Drct;			// 方向(Direction)を保存する
-	static int mouceStarageX;	// マウスのx座標を保存する
-	static	int mouceStarageY;	// マウスのy座標を保存する
 	static int isDrctFlg = FALSE;	// 方向が定まっているか >> TRUE:定まっている FALSE:定まっていない
 	static int isFirstFlg = TRUE;	// 最初かどうか >> TRUE:最初 FALSE:最初じゃない
 
@@ -18,12 +83,8 @@ void PieceReverse() {
 	int j;
 	static int k = 0;
 	//マウス座標より要素数を割り出し配列へ代入
-	mousey = pt.y;
-	mousex = pt.x;
-
-	//マウス座標の保存
-	mouceStarageX = mousex;
-	mouceStarageY = mousey;
+	mousey = mouseStorageY;
+	mousex = mouseStorageX;
 
 	////マスの中身を判断
 	//if (masu[mousey][mousex] != EMPTY)
@@ -34,8 +95,8 @@ void PieceReverse() {
 
 	//
 	//
-	if (masu[mouceStarageY][mouceStarageX] != player)
-		masu[mouceStarageY][mouceStarageX] = player;
+	if (masu[mouseStorageY][mouseStorageX] != player)
+		masu[mouseStorageY][mouseStorageX] = player;
 
 	while (1)
 	{
@@ -55,7 +116,7 @@ void PieceReverse() {
 			else if( プレイヤーと異なる色なら次のマスを見る ){ 座標の移動 }
 			else{ EMPTYなら初期化 }
 		}
-		*/
+		*
 
 		//方向の先のマスを見る
 		switch (Drct)
@@ -74,21 +135,21 @@ void PieceReverse() {
 				mousex = mousex;
 			}
 			else if (masu[mousey - 1][mousex] == player) {
-				for (i = mousey; i < mouceStarageY ; i++) {
+				for (i = mousey; i < mouseStorageY ; i++) {
 					if (masu[i][mousex] != player) masu[i][mousex] = player;
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 
@@ -107,8 +168,8 @@ void PieceReverse() {
 				mousex = mousex + 1;
 			}
 			else if (masu[mousey - 1][mousex + 1] == player) {
-				i = mouceStarageY;
-				j = mouceStarageX;
+				i = mouseStorageY;
+				j = mouseStorageX;
 				while (i!= mousey-1 && j!= mousex+1) {
 					
 					if (masu[i][j] != player) masu[i][j] = player;
@@ -117,16 +178,16 @@ void PieceReverse() {
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			break;
@@ -145,21 +206,21 @@ void PieceReverse() {
 				mousex = mousex + 1;
 			}
 			else if (masu[mousey][mousex + 1] == player) {
-				for (j = mouceStarageX; j < mousex+1 ; j++) {
+				for (j = mouseStorageX; j < mousex+1 ; j++) {
 					if (masu[mousey][j] != player) masu[mousey][j] = player;
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			break;
@@ -178,23 +239,23 @@ void PieceReverse() {
 				mousex = mousex + 1;
 			}
 			else if (masu[mousey + 1][mousex + 1] == player) {
-				for (i = mousey; i > mouceStarageY - 1; i--) {
-					for (j = mousex; j > mouceStarageX - 1; j--) {
+				for (i = mousey; i > mouseStorageY - 1; i--) {
+					for (j = mousex; j > mouseStorageX - 1; j--) {
 						if (masu[i][j] != player) masu[i][j] = player;
 					}
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			break;
@@ -214,21 +275,21 @@ void PieceReverse() {
 				mousex = mousex;
 			}
 			else if (masu[mousey + 1][mousex] == player) {
-				for (i = mousey; i > mouceStarageY ; i--) {
+				for (i = mousey; i > mouseStorageY ; i--) {
 					if (masu[i][mousex] != player) masu[i][mousex] = player;
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			break;
@@ -247,23 +308,23 @@ void PieceReverse() {
 				mousex = mousex - 1;
 			}
 			else if (masu[mousey + 1][mousex - 1] == player) {
-				for (i = mousey; i > mouceStarageY - 1; i--) {
-					for (j = mousex; j < mouceStarageX + 1; j ++ ) {
+				for (i = mousey; i > mouseStorageY - 1; i--) {
+					for (j = mousex; j < mouseStorageX + 1; j ++ ) {
 						if (masu[i][j] != player) masu[i][j] = player;
 					}
 				}
 			isDrctFlg = FALSE;
 			isFirstFlg = FALSE;
-			mousey = mouceStarageY;
-			mousex = mouceStarageX;
+			mousey = mouseStorageY;
+			mousex = mouseStorageX;
 			break;
 		}
 		else
 		{
 			isDrctFlg = FALSE;
 			isFirstFlg = FALSE;
-			mousey = mouceStarageY;
-			mousex = mouceStarageX;
+			mousey = mouseStorageY;
+			mousex = mouseStorageX;
 			break;
 		}
 		break;
@@ -282,21 +343,21 @@ void PieceReverse() {
 				mousex = mousex - 1;
 			}
 			else if (masu[mousey][mousex - 1] == player) {
-				for (j = mousex; j < mouceStarageX + 1; j++) {
+				for (j = mousex; j < mouseStorageX + 1; j++) {
 					if (masu[mousey][j] != player) masu[mousey][j] = player;
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			break;
@@ -315,23 +376,23 @@ void PieceReverse() {
 				mousex = mousex - 1;
 			}
 			else if (masu[mousey - 1][mousex - 1] == player) {
-				for (i = mousey; i < mouceStarageY; i++) {
-					for (j = mousex; j < mouceStarageX; j++) {
+				for (i = mousey; i < mouseStorageY; i++) {
+					for (j = mousex; j < mouseStorageX; j++) {
 						if (masu[i][j] != player) masu[i][j] = player;
 					}
 				}
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			else
 			{
 				isDrctFlg = FALSE;
 				isFirstFlg = FALSE;
-				mousey = mouceStarageY;
-				mousex = mouceStarageX;
+				mousey = mouseStorageY;
+				mousex = mouseStorageX;
 				break;
 			}
 			break;
@@ -348,3 +409,4 @@ void PieceReverse() {
 }  //while文終了
 
 }
+*/

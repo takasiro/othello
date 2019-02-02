@@ -1,7 +1,7 @@
 #include <windows.h>
 #include"Global.h"
 #include "PieceJudge.h"
-//#include "PieceReverse.h"
+#include "PieceReverse.h"
 #include "PieceCount.h"
 #include "PlayerReverse.h"
 #include "AllJudge.h"
@@ -100,19 +100,18 @@ LRESULT CALLBACK WindowProc(
 		return 0;
 
 
-	//マウスの処理
+	//マウスクリック
 	case WM_LBUTTONDOWN:
-		pt.x = LOWORD(lParam); //座標
-		pt.y = HIWORD(lParam); //座標
-		pt.x = (int)pt.x / 50+1;    //座標を枠内に入れる
-		pt.y = (int)pt.y/ 50+1;    //　・・
-
-		//(masu[pt.x][pt.y]) = player;
+		//マウス座標の取得
+		pt.x = LOWORD(lParam);
+		pt.y = HIWORD(lParam);
 
 		if (PieceJudge() == TRUE) {
-
-			//PieceReverse();
-			masu[pt.y][pt.x] = player;
+			//駒をひっくり返す
+			PieceReverse();
+			//現在の座標をplayerに変更
+			masu[mousey][mousex] = player;
+			//playerを交代
 			PlayerReverse();
 		}
 		InvalidateRect(hWnd, NULL, NULL);
@@ -124,7 +123,7 @@ LRESULT CALLBACK WindowProc(
 
 		return 0;
 
-	} // switch文の終了
+	}
 
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
