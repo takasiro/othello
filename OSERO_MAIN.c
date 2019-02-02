@@ -77,27 +77,28 @@ LRESULT CALLBACK WindowProc(
 			MoveToEx(hdc, 0, 50 * (i + 1), NULL);
 			LineTo(hdc, 400, 50 * (i + 1));
 		}
+		
+
+		//キーボードの選択中の場所を表示
+		SelectObject(hdc, hBrush[3]);	//赤
+		Rectangle(hdc, key.left, key.top, key.right + 1, key.bottom + 1);
+
+		//ドットの描画
 		SelectObject(hdc, hBrush[2]);
 		for (i = 0; i < 4; i++) {
 			Ellipse(hdc, dot[i].x - 5, dot[i].y - 5,
 				dot[i].x + 5, dot[i].y + 5);
 		}
 
-		//キーボードの選択中の場所を表示
-		SelectObject(hdc, hBrush[3]);	//赤
-		Rectangle(hdc, key.left, key.top, key.right, key.bottom);
-
 		//駒の描画
-		for (i = 1; i < 9; i++) {
-			for (j = 1; j < 9; j++) {
+		for (i = 1; i <= 8; i++) {
+			for (j = 1; j <= 8; j++) {
 				if (masu[j][i] != EMPTY) {
 					if (masu[j][i] == WHITE) { //２次元配列を黒に
 						SelectObject(hdc, hBrush[1]);  //白
-						//Ellipse(hdc, (j-1)*50, (i-1)*50, j* 50,i * 50);
 					}
 					else if (masu[j][i] == BLACK) {
 						SelectObject(hdc, hBrush[2]);  //黒
-						//Ellipse(hdc, (i - 1) * 50, (j - 1) * 50, j * 50, i * 50);
 					}
 					Ellipse(hdc, (i - 1) * 50, (j - 1) * 50, i * 50, j * 50);
 				}
