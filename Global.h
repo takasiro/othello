@@ -9,6 +9,12 @@
 #define  EMPTY       0
 #define  WHITE       1
 
+#define UP -1;
+#define RIGHT 1;
+#define DOWN 1;
+#define LEFT -1;
+
+
 extern POINT pt; //マウス座標
  extern  POINT bt; //キーボード座標
 
@@ -28,7 +34,7 @@ extern POINT pt; //マウス座標
 	eAllJudge,
 	eClickJudge,
 	eReverseJudge
-};
+}Scene;
 
 //方角
 typedef enum Direction {
@@ -40,7 +46,10 @@ typedef enum Direction {
 	eSW,
 	eW,
 	eNW,
-};
+}Drct;
+
+extern int mousex;
+extern int mousey;
 
 extern int masu[10][10];
 

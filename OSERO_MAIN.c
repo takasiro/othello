@@ -1,10 +1,10 @@
 #include <windows.h>
 #include"Global.h"
 #include "PieceJudge.h"
-#include "PieceReverse.h"
+//#include "PieceReverse.h"
 #include "PieceCount.h"
 #include "PlayerReverse.h"
-#include "AllJudge.h"
+//#include "AllJudge.h"
 
 //#define APP_NAME TEXT("OSERO");
 
@@ -112,7 +112,7 @@ LRESULT CALLBACK WindowProc(
 		return 0;
 
 
-		//マウスの処理
+	//マウスの処理
 	case WM_LBUTTONDOWN:
 		pt.x = LOWORD(lParam); //座標
 		pt.y = HIWORD(lParam); //座標
@@ -122,7 +122,10 @@ LRESULT CALLBACK WindowProc(
 		//(masu[pt.x][pt.y]) = player;
 
 		if (PieceJudge() == TRUE) {
-			PieceReverse();
+
+			//PieceReverse();
+			masu[pt.y][pt.x] = player;
+			PlayerReverse();
 		}
 		InvalidateRect(hWnd, NULL, NULL);
 		return 0;

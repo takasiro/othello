@@ -1,6 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include "Global.h"
+#include "SwitchShifted.h"
 #ifndef _PIECE_JUDGE_
 #define _PIECE_JUDGE_
 
