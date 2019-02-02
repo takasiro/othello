@@ -31,7 +31,7 @@ int PieceJudge() {
 	//マスが0なら置けるかどうか調べる
 	else
 	{
-		for (i = 0; i <= 8; i++)
+		for (i = 0; i < 8; i++)
 		{
 			SwitchShift(i);	//配列の要素数をずらす
 

@@ -13,7 +13,7 @@ void PieceReverse() {
 	mouseStorageX = mousex;
 	mouseStorageY = mousey;
 
-	for (i = 0; i <= 8; i++)
+	for (i = 0; i < 8; i++)
 	{
 		SwitchShift(i);	//”z—ñ‚Ì—v‘f”‚ð‚¸‚ç‚·
 

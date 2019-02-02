@@ -20,7 +20,7 @@ int AllJudge() {
 			}
 			// ƒ}ƒX‚ªEMPTY‚È‚ç’u‚¯‚é‚©‚Ç‚¤‚©‚ð”»’f‚·‚é
 			else {
-				for (k = 0; k <= 8; k++)
+				for (k = 0; k < 8; k++)
 				{
 					mousex = j;
 					mousey = i;
