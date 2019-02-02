@@ -72,6 +72,7 @@ void AllJudge() {
 	}  //for文(i)終了
 }
 
+//置ける場所をリセット
 void InitCanPutMasu() {
 	int i, j;
 

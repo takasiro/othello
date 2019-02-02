@@ -27,8 +27,15 @@ extern RECT key;  //キーボードの四角
  extern int player;
 //パスフラグ
  extern int passFlg;
-//八方向見る順番
- extern const int drctArray[8];
+ //マウス
+ extern int mousex;
+ extern int mousey;
+ static int mouseStorageX;	// マウスのx座標を保存する
+ static int mouseStorageY;	// マウスのy座標を保存する
+ //マス
+ extern int masu[10][10];
+ extern int canPutMasu[10][10];
+ extern POINT dot[4];
 
 //シーン管理
  typedef enum  Judge {
@@ -48,31 +55,6 @@ typedef enum Direction {
 	eW,
 	eNW,
 }Drct;
-
-extern int mousex;
-extern int mousey;
-static int mouseStorageX;	// マウスのx座標を保存する
-static int mouseStorageY;	// マウスのy座標を保存する
-
-extern int masu[10][10];
-extern int canPutMasu[10][10];
-
-
-extern POINT dot[4];
-
-/************************************************
-関 数 名 :SetMasu(int i,int j,int num)
-処理内容 :挟んだ駒をひっくり返す
-引    数 :　
-第一引数　int  入れたい色
-第二引数　int  入れたい色
-第三引数　int  入れたい色
-返 却 値 :無し
-備　　考 :マウスがあるマスに
-*************************************************/
-static void SetMasu(int i, int j, int color) {
-//	masu[i][j] = color;
-}
 
 #endif _GLOBAL_INCLUDE_
 

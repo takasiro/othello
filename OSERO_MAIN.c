@@ -10,12 +10,6 @@
 
 #define APP_NAME TEXT("reversi")
 
-// 盤面上の小さい黒丸の座標点（描画時の各中心座標）
-
-
-
-
-
 /*******************************************************************************
 関数名 : WindowProc
 機能   : メッセージ処理を行う
@@ -29,19 +23,19 @@ LRESULT CALLBACK WindowProc(
 	HDC hdc;
 	PAINTSTRUCT ps;
 	static HBRUSH hBrush[4];
-	int i,j;
+	int i, j;
 
 
 	switch (uMsg) {
 
 	case WM_CREATE:  // 初期生成時の処理（初期化）
 
-					 //ブラシデータの定義
+		//ブラシデータの定義
 		hBrush[0] = CreateSolidBrush(RGB(0, 0xAA, 0));          // 盤面（緑）
 		hBrush[1] = CreateSolidBrush(RGB(0xFF, 0xFF, 0xFF));    // WHITE
 		hBrush[2] = CreateSolidBrush(RGB(0, 0, 0));		        // BLACK
 		hBrush[3] = CreateSolidBrush(RGB(0xff, 0, 0));          // 赤キーボードの現在位置表示用
-		hBrush[4] = CreateSolidBrush(RGB(122,122,122));		    // 置ける場所
+		hBrush[4] = CreateSolidBrush(RGB(122, 122, 122));		    // 置ける場所
 
 		//キーボードによる移動する四角
 		key.left = 0;
@@ -56,14 +50,12 @@ LRESULT CALLBACK WindowProc(
 
 	case WM_DESTROY:  // ウィンドウ破棄時の処理
 
-
 		// ブラシの削除
 		for (i = 0; i < 3; i++) DeleteObject(hBrush[i]);
 		PostQuitMessage(0);
 		return 0;
 
 	case WM_PAINT: // 描画イベント発生時　　（画面に変化があった際に頻繁に呼び出される)
-
 
 		// ペイント開始
 		hdc = BeginPaint(hWnd, &ps);
@@ -77,7 +69,6 @@ LRESULT CALLBACK WindowProc(
 			MoveToEx(hdc, 0, 50 * (i + 1), NULL);
 			LineTo(hdc, 400, 50 * (i + 1));
 		}
-		
 
 		//キーボードの選択中の場所を表示
 		SelectObject(hdc, hBrush[3]);	//赤
@@ -93,13 +84,12 @@ LRESULT CALLBACK WindowProc(
 		//駒の描画
 		for (i = 1; i <= 8; i++) {
 			for (j = 1; j <= 8; j++) {
-				if (masu[j][i] != EMPTY) {
-					if (masu[j][i] == WHITE) { //２次元配列を黒に
-						SelectObject(hdc, hBrush[1]);  //白
-					}
-					else if (masu[j][i] == BLACK) {
-						SelectObject(hdc, hBrush[2]);  //黒
-					}
+				if (masu[j][i] == WHITE) { //２次元配列を黒に
+					SelectObject(hdc, hBrush[1]);  //白
+					Ellipse(hdc, (i - 1) * 50, (j - 1) * 50, i * 50, j * 50);
+				}
+				else if (masu[j][i] == BLACK) {
+					SelectObject(hdc, hBrush[2]);  //黒
 					Ellipse(hdc, (i - 1) * 50, (j - 1) * 50, i * 50, j * 50);
 				}
 			}
@@ -109,27 +99,22 @@ LRESULT CALLBACK WindowProc(
 		for (i = 1; i <= 8; i++) {
 			for (j = 1; j <= 8; j++) {
 				if (canPutMasu[j][i] == TRUE) {
-						SelectObject(hdc, hBrush[4]);
-						Ellipse(hdc, (i - 1) * 50 + 15, (j - 1) * 50 + 15, i * 50 - 15, j * 50 - 15);
+					SelectObject(hdc, hBrush[4]);
+					Ellipse(hdc, (i - 1) * 50 + 15, (j - 1) * 50 + 15, i * 50 - 15, j * 50 - 15);
 				}
-				
 			}
 		}
 
-
 		EndPaint(hWnd, &ps);
-
 		return 0;
 
+	case WM_LBUTTONDOWN:	//マウスクリック
 
-	//マウスクリック
-	case WM_LBUTTONDOWN:
 		//マウス座標の取得
 		pt.x = LOWORD(lParam);
 		pt.y = HIWORD(lParam);
 		pt.x = (int)pt.x / 50 + 1;
 		pt.y = (int)pt.y / 50 + 1;
-
 
 		if (PieceJudge() == TRUE) {
 			//駒をひっくり返す
@@ -148,24 +133,23 @@ LRESULT CALLBACK WindowProc(
 			key.right -= 50;
 			key.left -= 50;
 			bt.x--;
-			
 		}
-		if (wParam == VK_RIGHT && bt.x < 7) {
+		else if (wParam == VK_RIGHT && bt.x < 7) {
 			key.right += 50;
 			key.left += 50;
-			if (bt.x < 7)bt.x++;
+			bt.x++;
 		}
-		if (wParam == VK_UP && bt.y > 0) {
+		else if (wParam == VK_UP && bt.y > 0) {
 			key.top -= 50;
 			key.bottom -= 50;
 			bt.y--;
 		}
-		if (wParam == VK_DOWN && bt.y < 7) {
+		else if (wParam == VK_DOWN && bt.y < 7) {
 			key.top += 50;
 			key.bottom += 50;
 			bt.y++;
 		}
-		if (wParam == VK_SPACE) {
+		else if (wParam == VK_SPACE) {
 			pt.x = bt.x + 1;
 			pt.y = bt.y + 1;
 
@@ -197,7 +181,7 @@ LRESULT CALLBACK WindowProc(
 
 int WINAPI WinMain(
 	HINSTANCE hInstance, HINSTANCE hPrevInstance,
-	PSTR lpCmdLine, int nCmdShow) 
+	PSTR lpCmdLine, int nCmdShow)
 {
 	WNDCLASS wc;
 	MSG msg;

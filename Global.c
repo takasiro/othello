@@ -1,8 +1,6 @@
 #include <windows.h>
 #include"Global.h"
 
-
-
 //白い駒の総数
 extern int whiteCnt;
 //黒の駒の総数
@@ -11,18 +9,15 @@ extern int blackCnt;
 extern int player = BLACK;
 //パスフラグ
 extern int passFlg = FALSE;
-//八方向見る順番
-extern const int drctArray[8] = { 0,1,2,3,4,5,6,7 };
-
+//マウス
 extern int mousex = 0;
 extern int mousey = 0;
 extern int mouseStorageX = 0;
 extern int mouceStorageY = 0;
 
-
 POINT pt; //マウス座標
-POINT bt;
-RECT key;
+POINT bt; //キーボード座標
+RECT key; //キーボードの四角
 
 POINT dot[4] = {
    { 100,100 },
@@ -31,6 +26,7 @@ POINT dot[4] = {
    { 300,300 }
 };
 
+//置ける場所
 int canPutMasu[10][10] = { 0 };
 
 //初期

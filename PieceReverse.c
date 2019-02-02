@@ -23,15 +23,15 @@ void PieceReverse() {
 			changeCount++;
 			isDrctFlg = TRUE;
 
-			//先が同色なら
 			while (isDrctFlg == TRUE)
 			{
+				//先が同色ならひっくり返す
 				if (masu[mousey][mousex] == player)
 				{
 					mousey = mouseStorageY;
 					mousex = mouseStorageX;
 
-					//ひっくり返す処理
+					//ひっくり返す処理(戻ってカウント分iの方向へ進んでひっくり返す)
 					for (j = 0; j < changeCount;j++) {
 						SwitchShift(i);
 						masu[mousey][mousex] = player;
@@ -39,9 +39,10 @@ void PieceReverse() {
 
 					mousey = mouseStorageY;
 					mousex = mouseStorageX;
-					isDrctFlg = FALSE;
 					changeCount = 0;
+					isDrctFlg = FALSE;
 				}
+				//先が異色なら次を見る
 				else if (masu[mousey][mousex] == player * REVERSE)
 				{
 					SwitchShift(i);
@@ -61,7 +62,6 @@ void PieceReverse() {
 			mousey = mouseStorageY;
 			mousex = mouseStorageX;
 		}
-
 
 	}  //for文終了
 }
