@@ -4,7 +4,7 @@
 //#include "PieceReverse.h"
 #include "PieceCount.h"
 #include "PlayerReverse.h"
-//#include "AllJudge.h"
+#include "AllJudge.h"
 
 //#define APP_NAME TEXT("OSERO");
 
@@ -41,6 +41,7 @@ LRESULT CALLBACK WindowProc(
 		hBrush[1] = CreateSolidBrush(RGB(0xFF, 0xFF, 0xFF));    // WHITE
 		hBrush[2] = CreateSolidBrush(RGB(0, 0, 0));		        // BLACK
 		hBrush[3] = CreateSolidBrush(RGB(0xff, 0, 0));         //赤キーボードの現在位置表示用
+
 		return 0;
 
 	case WM_DESTROY:  // ウィンドウ破棄時の処理
@@ -56,19 +57,6 @@ LRESULT CALLBACK WindowProc(
 
 		// ペイント開始
 		hdc = BeginPaint(hWnd, &ps);
-
-		/*
-		 *
-		 */
-
-		pt.x = (pt.x / 50) * 50;    //座標を枠内に入れる
-		pt.y = (pt.y / 50) * 50;    //　・・
-
-		
-		
-			/*
-			 *
-			 */
 
 		// オセロ盤の描画
 
