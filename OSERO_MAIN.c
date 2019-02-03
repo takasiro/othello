@@ -81,6 +81,16 @@ LRESULT CALLBACK WindowProc(
 				dot[i].x + 5, dot[i].y + 5);
 		}
 
+		//置ける場所の表示
+		for (i = 1; i <= 8; i++) {
+			for (j = 1; j <= 8; j++) {
+				if (canPutMasu[j][i] == TRUE) {
+					SelectObject(hdc, hBrush[4]);
+					Ellipse(hdc, (i - 1) * 50 + 15, (j - 1) * 50 + 15, i * 50 - 15, j * 50 - 15);
+				}
+			}
+		}
+
 		//駒の描画
 		for (i = 1; i <= 8; i++) {
 			for (j = 1; j <= 8; j++) {
@@ -91,16 +101,6 @@ LRESULT CALLBACK WindowProc(
 				else if (masu[j][i] == BLACK) {
 					SelectObject(hdc, hBrush[2]);  //黒
 					Ellipse(hdc, (i - 1) * 50, (j - 1) * 50, i * 50, j * 50);
-				}
-			}
-		}
-
-		//置ける場所の表示
-		for (i = 1; i <= 8; i++) {
-			for (j = 1; j <= 8; j++) {
-				if (canPutMasu[j][i] == TRUE) {
-					SelectObject(hdc, hBrush[4]);
-					Ellipse(hdc, (i - 1) * 50 + 15, (j - 1) * 50 + 15, i * 50 - 15, j * 50 - 15);
 				}
 			}
 		}

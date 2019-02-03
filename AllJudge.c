@@ -17,15 +17,15 @@ void AllJudge() {
 	for (i = 1; i <= 8;i++) {
 		for (j = 1; j <= 8;j++) {
 			// マスがEMPTYじゃないなら次へ
-			if (masu[j][i] != EMPTY) {
+			if (masu[i][j] != EMPTY) {
 				continue;
 			}
 			// マスがEMPTYなら置けるかどうかを判断する
 			else {
 				for (k = 0; k < 8; k++)
 				{
-					mousex = j;
 					mousey = i;
+					mousex = j;
 
 					SwitchShift(k);	//配列の要素数をずらす
 
@@ -42,9 +42,9 @@ void AllJudge() {
 							if (masu[mousey][mousex] == player)
 							{
 								//return TRUE;
-								canPutMasu[j][i] = TRUE;
-								mousey = j;
-								mousex = i;
+								mousey = i;
+								mousex = j;
+								canPutMasu[mousey][mousex] = TRUE;
 								isDrctFlg = FALSE;
 							}
 							else if (masu[mousey][mousex] == player * REVERSE)
@@ -55,16 +55,16 @@ void AllJudge() {
 							else
 							{
 								isDrctFlg = FALSE;
-								mousey = j;
-								mousex = i;
+								mousey = i;
+								mousex = j;
 							}
 						}  //while文終了
 					}  //if文終了
 					else
 					{
 						isDrctFlg = FALSE;
-						mousey = j;
-						mousex = i;
+						mousey = i;
+						mousex = j;
 					}
 				}  //for文(k)終了
 			}  //else文終了
