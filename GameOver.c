@@ -22,8 +22,9 @@ void GameOver() {
 		MessageBox(NULL, TEXT("•"), TEXT("ŸÒ"), MB_OK);
 	}
 	else if (blackCnt == whiteCnt) {
+		isGameOver = FALSE;
 		MessageBox(NULL, TEXT("ˆø‚«•ª‚¯"), TEXT("ŸÒ"), MB_OK);
-		wsprintf(moji, TEXT("”’‚Í%d@•‚Í%d\n"), whiteCnt, blackCnt);
+		//wsprintf(moji, TEXT("”’‚Í%d@•‚Í%d\n"), whiteCnt, blackCnt);
 	}
 	
 }
