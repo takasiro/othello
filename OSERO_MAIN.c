@@ -1,10 +1,12 @@
 #include <windows.h>
+
 #include"Global.h"
 #include "PieceJudge.h"
 #include "PieceReverse.h"
 #include "PieceCount.h"
 #include "PlayerReverse.h"
 #include "AllJudge.h"
+#include"GameOver.h"
 
 //#define APP_NAME TEXT("OSERO");
 
@@ -22,7 +24,11 @@ LRESULT CALLBACK WindowProc(
 ) {
 	HDC hdc;
 	PAINTSTRUCT ps;
+	TCHAR buf[256];
+	memset(buf,0x00,sizeof(buf));
+	//*buf = blackCnt;
 	static HBRUSH hBrush[4];
+	
 	int i, j;
 
 
@@ -45,7 +51,7 @@ LRESULT CALLBACK WindowProc(
 
 		//置ける場所の表示
 		AllJudge();
-
+		PieceCount();
 		return 0;
 
 	case WM_DESTROY:  // ウィンドウ破棄時の処理
@@ -59,6 +65,20 @@ LRESULT CALLBACK WindowProc(
 
 		// ペイント開始
 		hdc = BeginPaint(hWnd, &ps);
+
+		//駒の数と誰のターンかの表示
+		int length = wsprintf(buf, TEXT("黒の駒数:%2d "), blackCnt);
+		TextOut(hdc, 480, 80, buf, length);
+		 length = wsprintf(buf, TEXT("白の駒数:%2d "), whiteCnt);
+		TextOut(hdc, 480, 100, buf, length);
+		if (player == WHITE) {
+			length = wsprintf(buf, TEXT("白のターンです "));
+			TextOut(hdc, 480, 125, buf, length);
+		}
+		else {
+			int length = wsprintf(buf, TEXT("黒のターンです "));
+			TextOut(hdc, 480, 125, buf, length);
+		}
 
 		// オセロ盤の描画
 		SelectObject(hdc, hBrush[0]);
@@ -175,7 +195,9 @@ LRESULT CALLBACK WindowProc(
 				PlayerReverse();
 			}
 		}
-
+		if (isGameOver == true) {
+			GameOver();
+		}
 		InvalidateRect(hWnd, NULL, FALSE);
 
 		return 0;
