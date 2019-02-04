@@ -85,7 +85,13 @@ LRESULT CALLBACK WindowProc(
 		for (i = 1; i <= 8; i++) {
 			for (j = 1; j <= 8; j++) {
 				if (canPutMasu[j][i] == TRUE) {
-					SelectObject(hdc, hBrush[4]);
+					if (player == BLACK) {
+						SelectObject(hdc, hBrush[2]);
+					}
+					else {
+						SelectObject(hdc, hBrush[1]);
+					}
+					//SelectObject(hdc, hBrush[4]);
 					Ellipse(hdc, (i - 1) * 50 + 15, (j - 1) * 50 + 15, i * 50 - 15, j * 50 - 15);
 				}
 			}
