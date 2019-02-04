@@ -34,7 +34,9 @@ void PieceReverse() {
 					//ひっくり返す処理(戻ってカウント分iの方向へ進んでひっくり返す)
 					for (j = 0; j < changeCount;j++) {
 						SwitchShift(i);
-						masu[mousey][mousex] = player;
+						if (masu[mousey][mousex] != EMPTY) {
+							masu[mousey][mousex] = player;
+						}
 					}
 
 					mousey = mouseStorageY;
