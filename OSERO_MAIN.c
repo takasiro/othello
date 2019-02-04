@@ -6,6 +6,7 @@
 #include "PieceCount.h"
 #include "PlayerReverse.h"
 #include "AllJudge.h"
+#include"GameOver.h"
 
 //#define APP_NAME TEXT("OSERO");
 
@@ -194,7 +195,9 @@ LRESULT CALLBACK WindowProc(
 				PlayerReverse();
 			}
 		}
-
+		if (isGameOver == true) {
+			GameOver();
+		}
 		InvalidateRect(hWnd, NULL, FALSE);
 
 		return 0;
