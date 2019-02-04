@@ -6,15 +6,7 @@ void PlayerReverse() {
 	int PassJudgeFlg = FALSE;	//置けるところがあるかどうか TRUE:置ける FALSE:置けない
 
 	//プレイヤーの反転
-	if (player == BLACK) {
-		player = WHITE;
-	}
-	else {
-		player = BLACK;
-	}
-
-	//プレイヤーは変わっているはずだがなぜか
-	//置ける場所の表示が相手側の物になっていく
+	player = player * REVERSE;
 
 	//置けるか判断
 	AllJudge();
