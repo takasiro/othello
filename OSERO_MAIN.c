@@ -119,17 +119,20 @@ LRESULT CALLBACK WindowProc(
 		//マウス座標の取得
 		pt.x = LOWORD(lParam);
 		pt.y = HIWORD(lParam);
-		pt.x = (int)pt.x / 50 + 1;
-		pt.y = (int)pt.y / 50 + 1;
+		if (pt.x < 401 && pt.y < 401) {
+			pt.x = (int)pt.x / 50 + 1;
+			pt.y = (int)pt.y / 50 + 1;
 
-		if (PieceJudge() == TRUE) {
-			//駒をひっくり返す
-			PieceReverse();
-			//現在の座標をplayerに変更
-			masu[mousey][mousex] = player;
-			//playerを交代
-			PlayerReverse();
+			if (PieceJudge() == TRUE) {
+				//駒をひっくり返す
+				PieceReverse();
+				//現在の座標をplayerに変更
+				masu[mousey][mousex] = player;
+				//playerを交代
+				PlayerReverse();
+			}
 		}
+
 		InvalidateRect(hWnd, NULL, FALSE);
 		return 0;
 
