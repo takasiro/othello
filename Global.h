@@ -27,6 +27,8 @@ extern RECT key;  //キーボードの四角
  extern int player;
 //パスフラグ
  extern int passFlg;
+ //ゲームオーバーフラグ
+ extern int isGameOver;
  //マウス
  extern int mousex;
  extern int mousey;

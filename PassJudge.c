@@ -5,7 +5,7 @@ void PassJudge()
 {
 	if (passFlg == TRUE)
 	{
-		//GAMEOVER
+		isGameOver = TRUE;
 	}
 	else
 	{

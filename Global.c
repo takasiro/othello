@@ -9,6 +9,8 @@ extern int blackCnt = 0;
 extern int player = BLACK;
 //パスフラグ
 extern int passFlg = FALSE;
+//ゲームオーバーフラグ
+extern int isGameOver = FALSE;
 //マウス
 extern int mousex = 0;
 extern int mousey = 0;
