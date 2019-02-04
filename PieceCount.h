@@ -15,6 +15,6 @@
 &blackCount •‚Ì‹î‘”
 *************************************************/
 
-extern int PieceCount(int);
+extern void PieceCount();
 
 #endif _PIECE_COUNT_

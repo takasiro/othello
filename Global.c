@@ -2,9 +2,9 @@
 #include"Global.h"
 
 //白い駒の総数
-extern int whiteCnt;
+extern int whiteCnt = 0;
 //黒の駒の総数
-extern int blackCnt;
+extern int blackCnt = 0;
 //現在のプレイヤーカラー
 extern int player = BLACK;
 //パスフラグ

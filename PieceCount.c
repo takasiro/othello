@@ -10,33 +10,35 @@
 *************************************************/
 
 #include <stdio.h>
-#include"Global.h"
-int PieceCount(int x) {//まだ適当(xのこと)
+#include "PieceCount.h"
+void PieceCount() {
 
 	int i, j;
 	int AllCount = 0;//駒の総数
-	int whiteCnt = 0;//白の駒
-	int blackCnt = 0;//黒の駒
+	whiteCnt = 0;//白の駒
+	blackCnt = 0;//黒の駒
 
-	for (i = 0; i < 10; i++) {//縦
-		for (j = 0; j < 10; j++) {//横
-			if ( masu[i][j] == 1) {
+	for (i = 1; i <= 8; i++) {//縦
+		for (j = 1; j <= 8; j++) {//横
+			if ( masu[i][j] == WHITE) {
 				whiteCnt++;//白の駒のカウント
 			}
-			if ( masu[i][j] == -1) {
+			else if ( masu[i][j] == BLACK) {
 				blackCnt++;//黒の駒のカウント
 			}
 		}
-		AllCount = whiteCnt + blackCnt;
 	}
-	if (AllCount <= 65 && AllCount >= 0) {//駒数が65以上 && 0未満なら
-		//返 却 値 : -1 失敗
-		PassJudge();
-	}
-	else {
-		//返却値 : 1 成功
-		//PlayerReverse();
-	}
-	return 0;//メイン？
+
+	AllCount = whiteCnt + blackCnt;
+
+	//if (AllCount <= 65 && AllCount >= 0) {//駒数が65以上 && 0未満なら
+	//	//返 却 値 : -1 失敗
+	//	//PassJudge();
+	//}
+	//else {
+	//	//返却値 : 1 成功
+	//	//PlayerReverse();
+	//}
+	//return 0;//メイン？
 	//PlayerReverse()へ行く？
 }

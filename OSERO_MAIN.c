@@ -128,6 +128,8 @@ LRESULT CALLBACK WindowProc(
 				PieceReverse();
 				//現在の座標をplayerに変更
 				masu[mousey][mousex] = player;
+				//駒をカウント
+				PieceCount();
 				//playerを交代
 				PlayerReverse();
 			}
@@ -167,6 +169,8 @@ LRESULT CALLBACK WindowProc(
 				PieceReverse();
 				//現在の座標をplayerに変更
 				masu[mousey][mousex] = player;
+				//駒をカウント
+				PieceCount();
 				//playerを交代
 				PlayerReverse();
 			}
