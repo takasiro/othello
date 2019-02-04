@@ -9,7 +9,7 @@ void PassJudge()
 	}
 	else
 	{
-		passFlg = TRUE;
+		PlayerReverse();
 	}
 	
 }

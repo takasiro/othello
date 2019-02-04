@@ -16,11 +16,13 @@ void PlayerReverse() {
 		for (j = 1; j <= 8; j++) {
 			if (canPutMasu[j][i] == TRUE) {
 				PassJudgeFlg = TRUE;
+				passFlg = FALSE;
 			}
 		}
 	}
 	//’u‚­‚Æ‚±‚ë‚ª–³‚©‚Á‚½‚çƒpƒX
 	if (PassJudgeFlg == FALSE) {
+		passFlg = TRUE;
 		PassJudge();
 	}
 
