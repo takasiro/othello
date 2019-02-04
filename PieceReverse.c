@@ -55,6 +55,7 @@ void PieceReverse() {
 				else
 				{
 					isDrctFlg = FALSE;
+					changeCount = 0;
 					mousey = mouseStorageY;
 					mousex = mouseStorageX;
 				}
@@ -62,6 +63,7 @@ void PieceReverse() {
 		}
 		else
 		{
+			changeCount = 0;
 			mousey = mouseStorageY;
 			mousex = mouseStorageX;
 		}
