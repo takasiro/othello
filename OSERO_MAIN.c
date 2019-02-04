@@ -1,4 +1,5 @@
 #include <windows.h>
+
 #include"Global.h"
 #include "PieceJudge.h"
 #include "PieceReverse.h"
@@ -22,7 +23,11 @@ LRESULT CALLBACK WindowProc(
 ) {
 	HDC hdc;
 	PAINTSTRUCT ps;
+	TCHAR buf[256];
+	memset(buf,0x00,sizeof(buf));
+	//*buf = blackCnt;
 	static HBRUSH hBrush[4];
+	
 	int i, j;
 
 
@@ -59,6 +64,10 @@ LRESULT CALLBACK WindowProc(
 
 		// ペイント開始
 		hdc = BeginPaint(hWnd, &ps);
+
+		int length = wsprintf(buf, TEXT("黒の総数:%2d "), blackCnt);
+		TextOut(hdc, 480, 80, buf, length);
+
 
 		// オセロ盤の描画
 		SelectObject(hdc, hBrush[0]);

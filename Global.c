@@ -2,18 +2,18 @@
 #include"Global.h"
 
 //白い駒の総数
-extern int whiteCnt;
+ int whiteCnt;
 //黒の駒の総数
-extern int blackCnt;
+ int blackCnt;
 //現在のプレイヤーカラー
-extern int player = BLACK;
+ int player = BLACK;
 //パスフラグ
-extern int passFlg = FALSE;
+ int passFlg = FALSE;
 //マウス
-extern int mousex = 0;
-extern int mousey = 0;
-extern int mouseStorageX = 0;
-extern int mouceStorageY = 0;
+ int mousex = 0;
+ int mousey = 0;
+ int mouseStorageX = 0;
+ int mouceStorageY = 0;
 
 POINT pt; //マウス座標
 POINT bt; //キーボード座標

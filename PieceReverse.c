@@ -11,23 +11,19 @@ void PieceReverse() {
 	mouseStorageX = mousex;
 	mouseStorageY = mousey;
 
-	for (i = 0; i < 8; i++)
-	{
+	for (i = 0; i < 8; i++){
 		SwitchShift(i);	//配列の要素数をずらす
 
 		//一つ先が異色なら一つ先を見る
-		if (masu[mousey][mousex] == player * REVERSE)
-		{
+		if (masu[mousey][mousex] == player * REVERSE){
 
 			SwitchShift(i);
 			changeCount++;
 			isDrctFlg = TRUE;
 
-			while (isDrctFlg == TRUE)
-			{
+			while (isDrctFlg == TRUE){
 				//先が同色ならひっくり返す
-				if (masu[mousey][mousex] == player)
-				{
+				if (masu[mousey][mousex] == player){
 					mousey = mouseStorageY;
 					mousex = mouseStorageX;
 
@@ -45,22 +41,19 @@ void PieceReverse() {
 					isDrctFlg = FALSE;
 				}
 				//先が異色なら次を見る
-				else if (masu[mousey][mousex] == player * REVERSE)
-				{
+				else if (masu[mousey][mousex] == player * REVERSE){
 					SwitchShift(i);
 					changeCount++;
 				}
 				//先が0だったらひっくり返さない
-				else
-				{
+				else{
 					isDrctFlg = FALSE;
 					mousey = mouseStorageY;
 					mousex = mouseStorageX;
 				}
 			}
 		}
-		else
-		{
+		else{
 			mousey = mouseStorageY;
 			mousex = mouseStorageX;
 		}
