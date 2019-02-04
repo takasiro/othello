@@ -156,6 +156,9 @@ LRESULT CALLBACK WindowProc(
 		}
 
 		InvalidateRect(hWnd, NULL, FALSE);
+		if (isGameOver == TRUE) {
+			GameOver();
+		}
 		return 0;
 
 		//キーボードの処理
@@ -195,11 +198,11 @@ LRESULT CALLBACK WindowProc(
 				PlayerReverse();
 			}
 		}
-		if (isGameOver == true) {
+
+		InvalidateRect(hWnd, NULL, FALSE);
+		if (isGameOver == TRUE) {
 			GameOver();
 		}
-		InvalidateRect(hWnd, NULL, FALSE);
-
 		return 0;
 
 	}
