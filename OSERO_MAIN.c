@@ -12,6 +12,8 @@
 
 #define APP_NAME TEXT("reversi")
 
+void Destroy();
+static HBRUSH hBrush[4];
 /*******************************************************************************
 関数名 : WindowProc
 機能   : メッセージ処理を行う
@@ -27,7 +29,7 @@ LRESULT CALLBACK WindowProc(
 	TCHAR buf[256];
 	memset(buf,0x00,sizeof(buf));
 	//*buf = blackCnt;
-	static HBRUSH hBrush[4];
+	
 	
 	int i, j;
 
@@ -35,7 +37,6 @@ LRESULT CALLBACK WindowProc(
 	switch (uMsg) {
 
 	case WM_CREATE:  // 初期生成時の処理（初期化）
-
 		//ブラシデータの定義
 		hBrush[0] = CreateSolidBrush(RGB(0, 0xAA, 0));          // 盤面（緑）
 		hBrush[1] = CreateSolidBrush(RGB(0xFF, 0xFF, 0xFF));    // WHITE
@@ -54,13 +55,19 @@ LRESULT CALLBACK WindowProc(
 		PieceCount();
 		return 0;
 
+	case WM_CLOSE:
+		 PostQuitMessage(0);
+		 exit(0);
+		//DefWindowProc( hWnd,  uMsg,  wParam,  lParam);
+		return 0;
+	
+	
 	case WM_DESTROY:  // ウィンドウ破棄時の処理
 
 		// ブラシの削除
-		for (i = 0; i < 3; i++) DeleteObject(hBrush[i]);
-		PostQuitMessage(0);
+		for (i = 0; i < 4; i++) DeleteObject(hBrush[i]);
 		return 0;
-
+		
 	case WM_PAINT: // 描画イベント発生時　　（画面に変化があった際に頻繁に呼び出される)
 
 		// ペイント開始
@@ -250,4 +257,10 @@ int WINAPI WinMain(
 	}
 
 	return msg.wParam;
+}
+
+void Destroy() { 
+	for (int i = 0; i < 4; i++) DeleteObject(hBrush[i]); 
+	PostQuitMessage(0);
+	exit(0);
 }

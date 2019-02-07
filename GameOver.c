@@ -9,22 +9,25 @@
 //‘¼‚ÌblackCnt‚Ì’l‚ğGameOver‚É‚Á‚Ä‚±‚ê‚È‚¢–â‘è”­¶’†
 
 void GameOver() {
-	TCHAR moji[11];
+	int r;
 	
 	//PieceCount();
 
 	if (blackCnt < whiteCnt) {
-		isGameOver = FALSE;
-		MessageBox(NULL, TEXT("”’"), TEXT("ŸÒ"), MB_OK);
+		
+		r = MessageBox(NULL, TEXT("”’"), TEXT("ŸÒ"), MB_OK);
+		//isDestroy = TRUE;
+		
 	}
 	else if (blackCnt > whiteCnt) {
-		isGameOver = FALSE;
-		MessageBox(NULL, TEXT("•"), TEXT("ŸÒ"), MB_OK);
+		r = MessageBox(NULL, TEXT("•"), TEXT("ŸÒ"), MB_OK);
 	}
 	else if (blackCnt == whiteCnt) {
-		isGameOver = FALSE;
-		MessageBox(NULL, TEXT("ˆø‚«•ª‚¯"), TEXT("ŸÒ"), MB_OK);
-		//wsprintf(moji, TEXT("”’‚Í%d@•‚Í%d\n"), whiteCnt, blackCnt);
+		r = MessageBox(NULL, TEXT("ˆø‚«•ª‚¯"), TEXT("ŸÒ"), MB_OK);
 	}
-	
+	if (r == IDOK) { 
+		Destroy();
+		
+	}
+
 }
