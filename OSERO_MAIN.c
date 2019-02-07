@@ -169,26 +169,47 @@ LRESULT CALLBACK WindowProc(
 		return 0;
 
 		//キーボードの処理
+		//キーボードの処理
 	case WM_KEYDOWN:
-		if (wParam == VK_LEFT && bt.x > 0) {
+		if (wParam == VK_LEFT && bt.x >= 0) {
 			key.right -= 50;
 			key.left -= 50;
 			bt.x--;
+			if (bt.x < 0) {
+				key.right = 400;
+				key.left = 350;
+				bt.x = 7;
+			}
 		}
-		else if (wParam == VK_RIGHT && bt.x < 7) {
+		else if (wParam == VK_RIGHT && bt.x <= 7) {
 			key.right += 50;
 			key.left += 50;
 			bt.x++;
+			if (bt.x > 7) {
+				key.right = 50;
+				key.left = 0;
+				bt.x = 0;
+			}
 		}
-		else if (wParam == VK_UP && bt.y > 0) {
+		else if (wParam == VK_UP && bt.y >= 0) {
 			key.top -= 50;
 			key.bottom -= 50;
 			bt.y--;
+			if (bt.y < 0) {
+				key.top = 350;
+				key.bottom = 400;
+				bt.y = 7;
+			}
 		}
-		else if (wParam == VK_DOWN && bt.y < 7) {
+		else if (wParam == VK_DOWN && bt.y <= 7) {
 			key.top += 50;
 			key.bottom += 50;
 			bt.y++;
+			if (bt.y > 7) {
+				key.top = 0;
+				key.bottom = 50;
+				bt.y = 0;
+			}
 		}
 		else if (wParam == VK_SPACE) {
 			pt.x = bt.x + 1;
