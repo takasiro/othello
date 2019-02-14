@@ -15,15 +15,15 @@ void GameOver() {
 
 	if (blackCnt < whiteCnt) {
 		
-		r = MessageBox(NULL, TEXT("白"), TEXT("勝者"), MB_OK);
+		r = MessageBox(NULL, TEXT("白プレイヤーの勝利です"), TEXT("勝者"), MB_OK);
 		//isDestroy = TRUE;
 		
 	}
 	else if (blackCnt > whiteCnt) {
-		r = MessageBox(NULL, TEXT("黒"), TEXT("勝者"), MB_OK);
+		r = MessageBox(NULL, TEXT("黒プレイヤーの勝利です"), TEXT("勝者"), MB_OK);
 	}
 	else if (blackCnt == whiteCnt) {
-		r = MessageBox(NULL, TEXT("引き分け"), TEXT("勝者"), MB_OK);
+		r = MessageBox(NULL, TEXT("置ける場所がありません。\n引き分けです。"), TEXT("勝者"), MB_OK);
 	}
 	if (r == IDOK) { 
 		Destroy();
