@@ -6,8 +6,12 @@ void PieceReverse() {
 	int i,j;
 	int isDrctFlg = FALSE;
 	int changeCount = 0;
+
+	//マウス座標を要素数として代入を行う
 	mousex = (int)pt.x;
 	mousey = (int)pt.y;
+
+	//座標を保存する
 	mouseStorageX = mousex;
 	mouseStorageY = mousey;
 
@@ -51,7 +55,7 @@ void PieceReverse() {
 					SwitchShift(i);
 					changeCount++;
 				}
-				//先が0だったらひっくり返さない
+				//先が空白だったらひっくり返さない
 				else
 				{
 					isDrctFlg = FALSE;
@@ -77,6 +81,7 @@ void PieceReverse() {
 
 	/*
 
+	旧八方向判断
 
 	int Drct;			// 方向(Direction)を保存する
 	static int isDrctFlg = FALSE;	// 方向が定まっているか >> TRUE:定まっている FALSE:定まっていない

@@ -169,7 +169,6 @@ LRESULT CALLBACK WindowProc(
 		return 0;
 
 		//キーボードの処理
-		//キーボードの処理
 	case WM_KEYDOWN:
 		if (wParam == VK_LEFT && bt.x >= 0) {
 			key.right -= 50;
